@@ -1,0 +1,71 @@
+@using TechNews.Models;
+@using PagedList.Core.Mvc;
+@model PagedList.Core.IPagedList<Post>
+
+@{
+    Layout = "/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main" clasa="main">
+    <div class="pagetitle">
+        <h2>Danh Sach Chuc Nang</h2>
+        <div class="row">
+            <div class="col-4">
+                <a type="button" class="btn btn-success" asp-area="Admin" asp-controller="Post" asp-action="Create">
+            <i class="bi bi-file-earmark-text me-1"></i>Add a post</a>
+            </div>
+            <div class="col-8">
+                <div>
+                    <ul class="pagination float-end">
+                        <pager class="pager-container" options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly" list="@Model"></pager>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <section class="section dashboard">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body mt-4">
+                            <table class="table table-borderless datatable">
+                                <thead>
+                                    <tr>
+                                        <th class="col-1 text-center">#</th>
+                                        <th class="col-3 text-center">Title</th>
+                                        <th class="col-2 text-center">Summary</th>
+                                        <th class="col-2 text-center">Author</th>
+                                        <th class="col-1 text-center">Visible</th>
+                                        <th class="col-1 text-center">Functions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td class="text-center" scope="row">@item.PostId</td>
+                                            <td class="text-left text-primary" scope="row"><a asp-area="Admin"
+                                                    asp-controller="Menu" asp-action="Details"
+                                                    asp-route-id="@item.MenuId">@item.Title</a></td>
+                                            <td class="text-center" scope="row">@item.Summary</td>
+                                            <td class="text-center" scope="row">@item.Author</td>
+                                            <td class="text-center" scope="row">@item.IsActive</td>
+                                            <td class="text-center" scope="row">
+                                                <a asp-area="Admin" asp-controller="Post" asp-action="Edit"
+                                                    asp-route-id="@item.PostId" class="btn btn-primary btn-sm"
+                                                    title="Edit the post"><i class="bi bi-pencil"></i></a>
+                                                <a asp-area="Admin" asp-controller="Post" asp-action="Delete"
+                                                    asp-route-id="@item.PostId" class="btn btn-danger btn-sm"
+                                                    title="Delete the post"><i class="bi bi-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </p>
+    </div>
+</main>

@@ -11,7 +11,7 @@ namespace TechNews.Areas.Admin.Controllers
     {
         private readonly DataContext _context;
 
-        public MenuController( DataContext context){
+        public MenuController(DataContext context){
             _context = context;
         }
 
@@ -19,6 +19,7 @@ namespace TechNews.Areas.Admin.Controllers
             var mnList = _context.Menus.OrderBy(m => m.MenuId).ToList ();
             return View(mnList);
         }
+
         public IActionResult Delete (int? id)
         {
             if (id == null || id ==0)
@@ -28,6 +29,7 @@ namespace TechNews.Areas.Admin.Controllers
                return NotFound();
             return View(mn);
         }
+
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -38,6 +40,7 @@ namespace TechNews.Areas.Admin.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
         public IActionResult Create()
         {
             var mnList = ( from m in _context.Menus 
@@ -54,6 +57,7 @@ namespace TechNews.Areas.Admin.Controllers
             ViewBag.mnList = mnList;
             return View();                 
         }
+
         [HttpPost]
         public IActionResult Create(Menu mn)
         {
@@ -65,6 +69,7 @@ namespace TechNews.Areas.Admin.Controllers
             }
             return View(mn);
         }
+
         public IActionResult Edit(int? id)
         {
             if (id == null|| id ==0)
@@ -86,6 +91,7 @@ namespace TechNews.Areas.Admin.Controllers
             ViewBag.mnList = mnList;
             return View(mn);   
         }
+        
         [HttpPost]
         public IActionResult Edit(Menu mn)
         {

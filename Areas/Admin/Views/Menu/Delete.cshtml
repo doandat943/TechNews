@@ -11,8 +11,8 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label asp-for="MenuID">MenuID</label>
-            <input type="text" class="form-control mb-3" asp-for="MenuID" disabled />
+            <label asp-for="MenuId">MenuID</label>
+            <input type="text" class="form-control mb-3" asp-for="MenuId" disabled />
         </div>
         <div class="form-group col-md-6">
             <label asp-for="MenuName">MenuName</label>
@@ -21,7 +21,7 @@
     </div>
 
     <form asp-action="Delete" method="Post">
-        <input type="hidden" asp-for="MenuID" />
+        <input type="hidden" asp-for="MenuId" />
 
         <a class="btn btn-lg btn-warning p-2 mr-5" href="javascript:history.back()">
             <i class="bi bi-arrow-left-circle"></i> Go Back
