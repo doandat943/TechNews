@@ -16,7 +16,7 @@ namespace TechNews.Areas.Admin.Controllers
         }
 
         public IActionResult Index(){
-            var mnList = _context.Menus.OrderBy(m => m.MenuId).ToList ();
+            var mnList = _context.Menus.OrderBy(m => m.MenuId).ToList();
             return View(mnList);
         }
 

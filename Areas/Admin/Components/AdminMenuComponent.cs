@@ -18,11 +18,6 @@ namespace TechNews.Areas.Admin.Components
             var mnList = (from mn in _context.AdminMenus
                           where (mn.IsActive)
                           select mn).ToList();
-            foreach (var item in mnList.ToArray())
-            {
-                Console.WriteLine($"AdminMenuId: {item.AdminMenuId}, ItemName: {item.ItemName}, ItemLevel: {item.ItemLevel}..."); // Hiển thị thông tin của mỗi AdminMenu
-            }
-            Console.WriteLine(mnList.ToArray());
             return await Task.FromResult((IViewComponentResult)View("Default", mnList));
         }
     }

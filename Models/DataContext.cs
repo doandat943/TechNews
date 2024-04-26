@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using TechNews.Areas.Admin.Models;
 
 namespace TechNews.Models
 {

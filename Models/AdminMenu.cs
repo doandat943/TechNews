@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TechNews.Areas.Admin.Models
+namespace TechNews.Models
 {
     [Table("admin_menu")]
     public class AdminMenu

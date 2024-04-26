@@ -1,4 +1,4 @@
-@using TechNews.Areas.Admin.Models
+@using TechNews.Models
 @model IList<AdminMenu>
 
 <aside id="sidebar" class="sidebar">
@@ -14,7 +14,6 @@
 
         @foreach (var item in Model.Where(m => m.ItemLevel == 1).OrderBy(m => m.ItemOrder).Select(m => m))
         {
-            Console.WriteLine(item.ItemName);
             var pID = item.AdminMenuId;
             var sMenu = Model.Where(p => p.ParentLevel == pID).OrderBy(p => p.ItemOrder).ToList();
             <li class="nav-item">
