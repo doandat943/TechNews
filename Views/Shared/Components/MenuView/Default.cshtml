@@ -17,12 +17,12 @@
                     var sMenu = Model.Where(s => s.ParentId == mId).OrderBy(s => s.MenuOrder).ToList();
                     if (sMenu.Count == 0)
                     {
-                        <a href="@menu.Link" class="nav-item nav-link active">@menu.MenuName</a>
+                        <a href="@menu.Link" class="nav-item nav-link @(menu.MenuOrder == 1 ? "active" : "")">@menu.MenuName</a>
                     }
                     else
                     {
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@menu.MenuName</a>
+                            <a href="@menu.Link" class="nav-link dropdown-toggle" data-toggle="dropdown">@menu.MenuName</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 @foreach (var smn in sMenu)
                                 {
