@@ -86,7 +86,9 @@
     <!-- Topbar End -->
 
 
-    @await Component.InvokeAsync("MenuView");
+    @await Component.InvokeAsync("MenuView")
+
+    @await Component.InvokeAsync("PostView")
 
     @RenderBody()
 
