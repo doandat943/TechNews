@@ -16,7 +16,7 @@ namespace TechNews.Areas.Admin.Controllers
         }
 
         public IActionResult Index(){
-            var mnList = _context.Menus.OrderBy(m => m.MenuId).ToList();
+            var mnList = _context.Menu.OrderBy(m => m.MenuId).ToList();
             return View(mnList);
         }
 
@@ -24,7 +24,7 @@ namespace TechNews.Areas.Admin.Controllers
         {
             if (id == null || id ==0)
                return NotFound();
-            var mn = _context.Menus.Find(id);
+            var mn = _context.Menu.Find(id);
             if (mn == null)
                return NotFound();
             return View(mn);
@@ -33,20 +33,20 @@ namespace TechNews.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var delMenu = _context.Menus.Find(id);
+            var delMenu = _context.Menu.Find(id);
             if (delMenu == null)
                 return NotFound();
-            _context.Menus.Remove(delMenu);
+            _context.Menu.Remove(delMenu);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public IActionResult Create()
         {
-            var mnList = ( from m in _context.Menus 
+            var mnList = ( from m in _context.Menu 
                            select new SelectListItem()
                            { 
-                            Text = (m.Levels == 1)? m.MenuName :"--"+ m.MenuName,
+                            Text = (m.Level == 1)? m.MenuName :"--"+ m.MenuName,
                             Value = m.MenuId.ToString()
                            }) .ToList();
             mnList.Insert (0, new SelectListItem()
@@ -63,7 +63,7 @@ namespace TechNews.Areas.Admin.Controllers
         {
             if ( ModelState.IsValid)
             {
-                _context.Menus.Add(mn);
+                _context.Menu.Add(mn);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -74,13 +74,13 @@ namespace TechNews.Areas.Admin.Controllers
         {
             if (id == null|| id ==0)
                return NotFound();
-            var mn = _context.Menus.Find(id);
+            var mn = _context.Menu.Find(id);
             if ( mn == null)
                return NotFound();
-            var mnList = ( from m in _context.Menus
+            var mnList = ( from m in _context.Menu
                            select new SelectListItem()
                            {
-                            Text = (m.Levels == 1)? m.MenuName :"--"+ m.MenuName,
+                            Text = (m.Level == 1)? m.MenuName :"--"+ m.MenuName,
                             Value = m.MenuId.ToString()
                            }).ToList();
             mnList.Insert(0, new SelectListItem()
@@ -97,7 +97,7 @@ namespace TechNews.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Menus.Update(mn);
+                _context.Menu.Update(mn);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }

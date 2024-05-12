@@ -22,7 +22,7 @@ namespace TechNews.Areas.Admin.Controllers
         [Route("Admin/post-index(page:int).html", Name = "PostIndex")]
         public IActionResult Index()
         {
-            var post = _context.Posts.OrderByDescending(p => p.PostId);
+            var post = _context.Post.OrderByDescending(p => p.PostId);
             int pageSize = 10;
             PagedList<Post> models = new PagedList<Post>(post, 1, pageSize);
             if (models == null) return NotFound(); 
