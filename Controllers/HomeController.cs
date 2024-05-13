@@ -1,6 +1,4 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TechNews.Models;
 
 namespace TechNews.Controllers;
 

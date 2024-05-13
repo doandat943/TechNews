@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using elFinder.NetCore;
 using elFinder.NetCore.Drivers.FileSystem;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -41,7 +37,7 @@ namespace TechNews.Areas.Admin.Controllers
         private Connector GetConnector()
         {
             // uploads 
-            string pathroot = "uploads";
+            string pathroot = "wwwroot/uploads";
             string requestUrl = "files";
 
             var driver = new FileSystemDriver();

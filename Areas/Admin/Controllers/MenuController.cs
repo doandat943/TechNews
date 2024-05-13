@@ -1,7 +1,5 @@
-using System.ComponentModel.Design;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using TechNews.Models;
 
 namespace TechNews.Areas.Admin.Controllers

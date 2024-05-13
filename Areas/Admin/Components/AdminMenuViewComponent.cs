@@ -3,12 +3,12 @@ using TechNews.Models;
 
 namespace TechNews.Areas.Admin.Components
 {
-    [ViewComponent(Name = "AdminMenu")]
-    public class AdminMenuComponent : ViewComponent
+    [ViewComponent(Name = "AdminMenuView")]
+    public class AdminMenuViewComponent : ViewComponent
     {
         private readonly DataContext _context;
 
-        public AdminMenuComponent(DataContext context)
+        public AdminMenuViewComponent(DataContext context)
         {
             _context = context;
         }
