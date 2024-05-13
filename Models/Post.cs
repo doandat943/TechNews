@@ -13,6 +13,7 @@ namespace TechNews.Models
         public string? Link { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
+        public int View { get; set; }
         public string? AuthorId { get; set; }
         public int MenuId { get; set; }
     }
