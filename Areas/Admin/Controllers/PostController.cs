@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PagedList.Core;
@@ -24,7 +26,8 @@ namespace TechNews.Areas.Admin.Controllers
             return View(models);
         }
 
-        public IActionResult Create() {
+        public IActionResult Create() 
+        {
             var mnList = (from m in _context.Menu
             select new SelectListItem()
             {
@@ -39,7 +42,6 @@ namespace TechNews.Areas.Admin.Controllers
             ViewBag.mnList = mnList;
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(Post post){
             if (ModelState.IsValid){
@@ -48,5 +50,58 @@ namespace TechNews.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+        public IActionResult Delete(int? id)
+        {
+            if ( id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var mn = _context.Post.Find(id);
+            if (mn == null)
+            {
+                return NotFound();
+            }
+            return View(mn);   
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var delPost = _context.Post.Find(id);   
+            if (delPost == null) return NotFound();
+            _context.Post.Remove(delPost);
+            _context.SaveChanges();
+            return RedirectToAction("Index");  
+        }
+        public IActionResult Edit(int? id)
+        {
+            if( id == null || id == 0) 
+               return NotFound();
+            var mn = _context.Post.Find();
+            if (mn == null) 
+               return NotFound(); 
+            var mnList = (from m in _context.Post select new SelectListItem(){
+                Text = (mn.AuthorId == null)? m.Title : "--"+mn.Title,
+                Value = mn.PostId.ToString(),
+            }).ToList();
+            mnList.Insert(0, new SelectListItem(){
+                Text ="--select--",
+                Value ="0"
+            });
+            ViewBag.mnList = mnList;
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult Edit(Post mn){
+            if (ModelState.IsValid)
+            {
+                _context.Post.Update(mn);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(mn);
+        }
+
     }
+    
 }

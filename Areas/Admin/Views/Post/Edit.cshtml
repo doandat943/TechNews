@@ -1,0 +1,64 @@
+@model TechNews.Models.Post;
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Edit a post item</h2>
+    </div>
+    <div class="container shadow p-5">
+        <form method="Post" asp-action="Edit">
+            <div class="form-row">
+
+                <input type="text" class="form-control" asp-for="PostId" type="hidden">
+
+                <div class="form-group col-md-6 mb-3">
+                    <label>title</label>
+                    <input type="text" class="form-control" asp-for="Title" placeholder="title ... ">
+                    <span asp-validation-for="Title" class="alert-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                    <label>Menuid</label>
+                    <select asp-for="MenuId" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.mnList, "Value", "Text"))">
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                    <label>Link</label>
+                    <input type="text" class="form-control" asp-for="Link" placeholder="Enter the link ... ">
+
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                    <label>Content</label>
+                    <input type="text" class="form-control" asp-for="Content"
+                        placeholder="Enter the order of item ... ">
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                    <label>Image</label>
+                    <input type="text" class="form-control" asp-for="Image"
+                        placeholder="Enter the position ... ">
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                    <label>
+                        @Html.CheckBox("IsActive", Model.IsActive)
+                        Visible
+                    </label>
+                </div>
+            </div>
+            <a asp-controller="Menu" asp-action="Index" class="btn btn-lg btn-warning p-2">
+                <i class="bi bi-arrow-left-circle"></i>
+                Go back
+            </a>
+
+            <button type="submit" class="btn btn-1g btn-primary p-2">
+                <i class="bi bi-file-plus-fill"></i> Save information
+            </button>
+        </form>
+    </div>
+</main>
