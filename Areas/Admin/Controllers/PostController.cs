@@ -12,7 +12,8 @@ namespace TechNews.Areas.Admin.Controllers
     {
         private readonly DataContext _context;
 
-        public PostController(DataContext context){
+        public PostController(DataContext context)
+        {
             _context = context;
         }
 
@@ -22,18 +23,18 @@ namespace TechNews.Areas.Admin.Controllers
             var post = _context.Post.OrderByDescending(p => p.PostId);
             int pageSize = 10;
             PagedList<Post> models = new PagedList<Post>(post, 1, pageSize);
-            if (models == null) return NotFound(); 
+            if (models == null) return NotFound();
             return View(models);
         }
 
-        public IActionResult Create() 
+        public IActionResult Create()
         {
             var mnList = (from m in _context.Menu
-            select new SelectListItem()
-            {
-                Text = m.MenuName,
-                Value = m.MenuId.ToString()
-            }).ToList();
+                          select new SelectListItem()
+                          {
+                              Text = m.MenuName,
+                              Value = m.MenuId.ToString()
+                          }).ToList();
             mnList.Insert(0, new SelectListItem()
             {
                 Text = "--- Select ---",
@@ -43,8 +44,10 @@ namespace TechNews.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Post post){
-            if (ModelState.IsValid){
+        public IActionResult Create(Post post)
+        {
+            if (ModelState.IsValid)
+            {
                 _context.Post.Add(post);
                 _context.SaveChanges();
             }
@@ -52,7 +55,7 @@ namespace TechNews.Areas.Admin.Controllers
         }
         public IActionResult Delete(int? id)
         {
-            if ( id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
@@ -61,38 +64,42 @@ namespace TechNews.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(mn);   
+            return View(mn);
         }
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var delPost = _context.Post.Find(id);   
+            var delPost = _context.Post.Find(id);
             if (delPost == null) return NotFound();
             _context.Post.Remove(delPost);
             _context.SaveChanges();
-            return RedirectToAction("Index");  
+            return RedirectToAction("Index");
         }
         public IActionResult Edit(int? id)
         {
-            if( id == null || id == 0) 
-               return NotFound();
-            var mn = _context.Post.Find();
-            if (mn == null) 
-               return NotFound(); 
-            var mnList = (from m in _context.Post select new SelectListItem(){
-                Text = (mn.AuthorId == null)? m.Title : "--"+mn.Title,
-                Value = mn.PostId.ToString(),
-            }).ToList();
-            mnList.Insert(0, new SelectListItem(){
-                Text ="--select--",
-                Value ="0"
+            if (id == null || id == 0)
+                return NotFound();
+            var mn = _context.Post.Find(id);
+            if (mn == null)
+                return NotFound();
+            var mnList = (from m in _context.Post
+                          select new SelectListItem()
+                          {
+                              Text = (mn.AuthorId == null) ? m.Title : "--" + mn.Title,
+                              Value = mn.PostId.ToString(),
+                          }).ToList();
+            mnList.Insert(0, new SelectListItem()
+            {
+                Text = "--select--",
+                Value = "0"
             });
             ViewBag.mnList = mnList;
-            return View();
+            return View(mn);
         }
-        
+
         [HttpPost]
-        public IActionResult Edit(Post mn){
+        public IActionResult Edit(Post mn)
+        {
             if (ModelState.IsValid)
             {
                 _context.Post.Update(mn);
@@ -103,5 +110,5 @@ namespace TechNews.Areas.Admin.Controllers
         }
 
     }
-    
+
 }
