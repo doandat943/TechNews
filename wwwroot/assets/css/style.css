@@ -4670,7 +4670,7 @@ a.badge:hover, a.badge:focus {
 
 .badge-primary {
   color: #212529;
-  background-color: #FFCC00;
+  background-color: #EF9A9A;
 }
 
 a.badge-primary:hover, a.badge-primary:focus {
@@ -6094,7 +6094,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #FFCC00 !important;
+  background-color: #EF9A9A !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -6164,17 +6164,17 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #1E2024 !important;
+  background-color: #222222 !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
 button.bg-dark:focus {
-  background-color: #070708 !important;
+  background-color: #808080 !important;
 }
 
 .bg-white {
-  background-color: #fff !important;
+  background-color: #F1F1F1 !important;
 }
 
 .bg-transparent {
@@ -9264,7 +9264,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #FFCC00 !important;
+  color: #EF9A9A   !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -9516,7 +9516,7 @@ h6,
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link.active {
   color: #1E2024;
-  background: #FFCC00;
+  background: #EF9A9A;
 }
 
 @media (max-width: 991.98px) {
@@ -9546,7 +9546,7 @@ h6,
 
 .main-carousel .owl-dot.active {
   width: 40px;
-  background: #FFCC00;
+  background: #EF9A9A;
 }
 
 .tranding-carousel .owl-nav {
@@ -9600,9 +9600,9 @@ h6,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #FFFFFF;
+  background: #F5F5F5;
   border: 1px solid #dee2e6;
-  border-left: 5px solid #FFCC00;
+  border-left: 5px solid #EF9A9A;
 }
 
 .news-carousel .owl-nav {
