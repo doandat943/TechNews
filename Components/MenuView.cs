@@ -4,11 +4,11 @@ using TechNews.Models;
 namespace TechNews.Components
 {
     [ViewComponent(Name = "MenuView")]
-    public class MenuViewComponent : ViewComponent
+    public class MenuView : ViewComponent
     {
         private readonly DataContext _context;
 
-        public MenuViewComponent(DataContext context)
+        public MenuView(DataContext context)
         {
             _context = context;
         }

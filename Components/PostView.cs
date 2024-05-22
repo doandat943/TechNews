@@ -4,11 +4,11 @@ using TechNews.Models;
 namespace TechNews.Components
 {
     [ViewComponent(Name = "PostView")]
-    public class PostViewComponent : ViewComponent
+    public class PostView : ViewComponent
     {
         private readonly DataContext _context;
 
-        public PostViewComponent(DataContext context)
+        public PostView(DataContext context)
         {
             _context = context;
         }
@@ -21,7 +21,7 @@ namespace TechNews.Components
                             select new 
                             {
                                 Post = post,
-                                MenuName = menu.MenuName
+                                Menu = menu
                             }).ToList();
             return await Task.FromResult((IViewComponentResult)View("Default", postList));
         }

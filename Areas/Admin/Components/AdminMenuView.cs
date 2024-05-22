@@ -4,11 +4,11 @@ using TechNews.Models;
 namespace TechNews.Areas.Admin.Components
 {
     [ViewComponent(Name = "AdminMenuView")]
-    public class AdminMenuViewComponent : ViewComponent
+    public class AdminMenuView : ViewComponent
     {
         private readonly DataContext _context;
 
-        public AdminMenuViewComponent(DataContext context)
+        public AdminMenuView(DataContext context)
         {
             _context = context;
         }
