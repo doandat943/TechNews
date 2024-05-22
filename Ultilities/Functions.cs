@@ -2,6 +2,10 @@ namespace TechNews.Ultilities
 {
     public class Functions
     {
+        public static string _AccountId = String.Empty;
+        public static string _AccountName = "";
+        public static string _AccountType = "";
+
         public static string TitleSlugGenerate(string type, string? title, long id)
         {
             return type + "/" + SlugGenerator.SlugGenerator.GenerateSlug(title) + "-" + id.ToString();
