@@ -64,9 +64,9 @@
                         <div class="mb-2">
                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
                                 href="">@post.Menu.MenuName</a>
-                            <a class="text-body" href=""><small>@Functions.getDiffTime(post.Post.CreatedDate)</small></a>
+                            <a class="text-body" href=""><small>@Functions.GetDiffTime(post.Post.CreatedDate)</small></a>
                         </div>
-                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">@post.Post.Title</a>
+                        <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">@Functions.TruncateTitle(post.Post.Title, 50)</a>
                     </div>
                 </div>
             }

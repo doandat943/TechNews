@@ -1,4 +1,5 @@
 @model IEnumerable<dynamic>
+@using TechNews.Ultilities
 
 <!-- Footer Start -->
 <div class="container-fluid bg-dark pt-5 px-sm-3 px-md-5 mt-5">
@@ -27,7 +28,7 @@
                             href="">@item.Menu.MenuName</a>
                         <a class="text-body" href=""><small>@item.Post.CreatedDate</small></a>
                     </div>
-                    <a class="small text-body text-uppercase font-weight-medium" href="">@item.Post.Title</a>
+                    <a class="small text-body text-uppercase font-weight-medium" href="/@Functions.TitleSlugGenerate("post", item.Post.Title, item.Post.PostId)">@Functions.TruncateTitle(item.Post.Title, 50)</a>
                 </div>
             }
         </div>

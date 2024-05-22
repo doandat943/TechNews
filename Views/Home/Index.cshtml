@@ -1,5 +1,51 @@
-﻿
+﻿@model IEnumerable<dynamic>
+@using TechNews.Ultilities
 
+<!-- Main News Slider Start -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-7 px-0">
+            <div class="owl-carousel main-carousel position-relative">
+                @foreach (var post in Model.Where(p => p.Post.IsActive == true).OrderBy(p => p.Post.CreatedDate).Take(3))
+                {
+                    <div class="position-relative overflow-hidden" style="height: 500px;">
+                        <img class="img-fluid h-100" src="@post.Post.Image" style="object-fit: cover;">
+                        <div class="overlay">
+                            <div class="mb-2">
+                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                    href="">@post.Menu.MenuName</a>
+                                <a class="text-white" href="">@Functions.GetDiffTime(post.Post.CreatedDate)</a>
+                            </div>
+                            <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="/@Functions.TitleSlugGenerate("post", post.Post.Title, post.Post.PostId)">@post.Post.Title</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-5 px-0">
+            <div class="row mx-0">
+                @foreach (var post in Model.Where(p => p.Post.IsActive == true).OrderBy(p => p.Post.CreatedDate).Skip(3).Take(4))
+                {
+                    <div class="col-md-6 px-0">
+                        <div class="position-relative overflow-hidden" style="height: 250px;">
+                            <img class="img-fluid w-100 h-100" src="@post.Post.Image"
+                                style="object-fit: cover;">
+                            <div class="overlay">
+                                <div class="mb-2">
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                        href="">@post.Menu.MenuName</a>
+                                    <a class="text-white" href=""><small>@Functions.GetDiffTime(post.Post.CreatedDate, true)</small></a>
+                                </div>
+                                <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="/@Functions.TitleSlugGenerate("post", post.Post.Title, post.Post.PostId)">@Functions.TruncateTitle(post.Post.Title, 50)</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main News Slider End -->
 
 <!-- Breaking News Start -->
 <div class="container-fluid bg-dark py-3 mb-3">
