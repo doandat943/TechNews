@@ -7,6 +7,10 @@ namespace TechNews.Ultilities
             return type + "/" + SlugGenerator.SlugGenerator.GenerateSlug(title) + "-" + id.ToString();
         }
 
+        public static string GetCurrentDate(){
+            return DateTime.Now.ToString("yyyy-MM-dd hh:mm");
+        }
+
         public static string GetDiffTime(DateTime inputDate, bool isShort = false)
         {
             var timeDifference = DateTime.Now - inputDate;

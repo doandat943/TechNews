@@ -83,7 +83,7 @@ namespace TechNews.Areas.Admin.Controllers
             var mnList = (from m in _context.Post
                           select new SelectListItem()
                           {
-                              Text = (mn.AuthorId == null) ? m.Title : "--" + mn.Title,
+                              Text = (mn.AuthorId == null) ? m.MenuId.ToString() : "--" + m.MenuId,
                               Value = mn.PostId.ToString(),
                           }).ToList();
             mnList.Insert(0, new SelectListItem()
