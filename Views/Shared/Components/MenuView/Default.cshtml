@@ -23,11 +23,11 @@
                     else
                     {
                         <div class="nav-item dropdown">
-                            <a href="@menu.Link" class="nav-link dropdown-toggle" data-toggle="dropdown">@menu.MenuName</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@menu.MenuName</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 @foreach (var smn in sMenu)
                                 {
-                                    <a href="@smn.Link" class="dropdown-item">@smn.MenuName</a>
+                                    <a href="/category/@smn.MenuId" class="dropdown-item">@smn.MenuName</a>
                                 }
                             </div>
                         </div>

@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PagedList.Core;

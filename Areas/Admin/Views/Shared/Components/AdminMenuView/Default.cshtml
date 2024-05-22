@@ -8,7 +8,7 @@
             var pID = item.MenuId;
             var sMenu = Model.Where(p => p.ParentId == pID).OrderBy(p => p.MenuOrder).ToList();
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#@item.Target" data-bs-toggle="collapse" href="#">
+                <a class="nav-link collapsed" data-bs-target="#@item.Target" @(sMenu.Count > 0 ? "data-bs-toggle=collapse" : "") href="/Admin/@item.ControllerName/@item.ActionName">
                     <i class="@item.Icon"></i>
                     <span>@item.MenuName</span>
                     @if (sMenu.Count > 0)

@@ -9,7 +9,6 @@ namespace TechNews.Areas.Admin.Controllers
 
     public class FileManagerController : Controller
     {
-        [Route("/Admin/file-manager")]
         public IActionResult Index()
         {
             return View();
@@ -36,8 +35,7 @@ namespace TechNews.Areas.Admin.Controllers
 
         private Connector GetConnector()
         {
-            // uploads 
-            string pathroot = "wwwroot/uploads";
+            string pathroot = "uploads";
             string requestUrl = "files";
 
             var driver = new FileSystemDriver();

@@ -1,18 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Mysqlx.Resultset;
-using SlugGenerator;
-using TechNews.Models;
-
 namespace TechNews.Ultilities
 {
     public class Functions
     {
         public static string TitleSlugGenerate(string type, string? title, long id)
         {
-            return type + "-" + SlugGenerator.SlugGenerator.GenerateSlug(title) + "-" + id.ToString() + ".html";
+            return type + "/" + SlugGenerator.SlugGenerator.GenerateSlug(title) + "-" + id.ToString();
         }
 
         public static string GetDiffTime(DateTime inputDate, bool isShort = false)
