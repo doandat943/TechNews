@@ -73,6 +73,7 @@ namespace TechNews.Areas.Admin.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -80,16 +81,16 @@ namespace TechNews.Areas.Admin.Controllers
             var mn = _context.Post.Find(id);
             if (mn == null)
                 return NotFound();
-            var mnList = (from m in _context.Post
+            var mnList = (from m in _context.Menu
                           select new SelectListItem()
                           {
-                              Text = (mn.AuthorId == null) ? m.MenuId.ToString() : "--" + m.MenuId,
-                              Value = mn.PostId.ToString(),
+                              Text = m.MenuName,
+                              Value = m.MenuId.ToString()
                           }).ToList();
             mnList.Insert(0, new SelectListItem()
             {
-                Text = "--select--",
-                Value = "0"
+                Text = "--- Select ---",
+                Value = string.Empty
             });
             ViewBag.mnList = mnList;
             return View(mn);

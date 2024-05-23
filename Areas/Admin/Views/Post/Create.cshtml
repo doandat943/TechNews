@@ -1,77 +1,126 @@
-@using TechNews.Ultilities
 @model TechNews.Models.Post;
 @{
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <main id="main" class="main">
+
     <div class="pagetitle">
-        <h4>Post management > Add a new post</h4>
-        <hr />
+        <h1>Form Elements</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Elements</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
         <div class="row">
-            <div class="col-md-12">
-                <form asp-action="Create" method="Post">
-                    <div class="form-group">
-                        <label>Danh muc</label>
-                        <select asp-for="MenuId" class="form-control"
-                            asp-items="@(new SelectList(ViewBag.mnList, "Value", "Text"))" id="MenuId">
-                        </select>
-                    </div>
+            <div class="col">
 
-                    <div class="form-group">
-                        <label class="control-label">Title</label>
-                        <input asp-for="Title" class="form-control" />
-                        <span asp-validation-for="Title" class="text-danger mb-4"></span>
-                    </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">General Form Elements</h5>
 
-                    <div class="form-group">
-                        <label class="control-label">Summary</label>
-                        <textarea asp-for="Summary" class="form-control" rows="6"> </textarea>
-                        <span asp-validation-for="Summary" class="text-danger mb-4"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">Content</label>
-                        <textarea asp-for="Content" class="form-control"></textarea>
-                        <span asp-validation-for="Content" class="text-danger mb-4"></span>
-                    </div>
-
-                    <div class="form-group d-none">
-                        <input asp-for="CreatedDate" class="form-control" value="@DateTime.Now" />
-                    </div>
-
-                    <div class="from-group">
-                        <label class="control-label">Image</label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-success" type="button" onclick="openDialog()">Choose an
-                                    image</button>
+                        <!-- General Form Elements -->
+                        <form asp-controller="Post" asp-action="Edit">
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Danh mục</label>
+                                <div class="col-sm-10">
+                                    <select asp-for="MenuId" class="form-select"
+                                        asp-items="@(new SelectList(ViewBag.mnList, "Value", "Text"))" id="MenuId">
+                                    </select>
+                                </div>
                             </div>
-                            <input type="text" class="form-control" asp-for="Image" id="file_input"
-                                aria-describedby="button-addon2">
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label>
-                            @Html.CheckBox("IsActive", false)
-                            Visible
-                        </label>
-                    </div>
+                            <div class="row mb-3">
+                                <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Title" class="form-control"/>
+                                    <span asp-validation-for="Title" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
 
-                    <div class="form-group d-none">
-                        <input asp-for="AuthorId" class="form-control" value="admin" />
-                    </div>
+                            <div class="row mb-3">
+                                <label for="inputSummary" class="col-sm-2 col-form-label">Summary</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Summary" class="form-control"/>
+                                    <span asp-validation-for="Summary" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
 
-                    <div class="form-group mt-5">
-                        <button type="submit" value="Create" class="btn btn-primary" asp-action="Create"
-                            onclick="return checkValue()">Save Information </button>
+                            <div class="row mb-3">
+                                <label for="inputContent" class="col-sm-2 col-form-label">Nội dung</label>
+                                <div class="col-sm-10">
+                                    <textarea asp-for="Content" class="form-control"></textarea>
+                                    <span asp-validation-for="Content" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <label for="inputNumber" class="col-sm-2 col-form-label">Ảnh</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group-prepend mb-2">
+                                        <button class="btn btn-success" type="button" onclick="openDialog()">Chọn ảnh</button>
+                                    </div>
+                                    <input asp-for="Image" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Kích hoạt</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="IsActive" class="form-check-input" type="checkbox"/>
+                                    <label class="form-check-label" for="IsActive">Example checkbox</label>
+                                    <span asp-validation-for="IsActive" class="text-danger mb-4"></span>
+                                    <input asp-for="IsActive" value="1" type="hidden" />
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Ngày tạo</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="CreatedDate" class="form-control" type="datetime" value="@DateTime.Now" disabled/>
+                                    <span asp-validation-for="CreatedDate" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Lượt xem</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="View" class="form-control" value="0" disabled/>
+                                    <span asp-validation-for="View" class="text-danger mb-4"></span>
+                                    <input asp-for="View" value="0" type="hidden" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Tác giả</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="AuthorId" class="form-control" value="admin" disabled/>
+                                    <span asp-validation-for="AuthorId" class="text-danger mb-4"></span>
+                                    <input asp-for="AuthorId" value="admin" value="admin" type="hidden" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Submit Button</label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                                </div>
+                            </div>
+
+                        </form><!-- End General Form Elements -->
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</main>
+    </section>
+
+</main><!-- End #main -->
+
 @{
     var summerNote = new TechNews.Areas.Admin.Models.SummerNote("#Content");
     <partial name="_SummerNote" model="summerNote" />

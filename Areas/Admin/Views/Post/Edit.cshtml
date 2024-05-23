@@ -4,58 +4,123 @@
 }
 
 <main id="main" class="main">
+
     <div class="pagetitle">
-        <h2>Edit a post item</h2>
-    </div>
-    <div class="container shadow p-5">
-        <form method="Post" asp-action="Edit">
-            <div class="form-row">
+        <h1>Form Elements</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Elements</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-                <input type="text" class="form-control" asp-for="PostId" type="hidden">
+    <section class="section">
+        <div class="row">
+            <div class="col">
 
-                <div class="form-group col-md-6 mb-3">
-                    <label>title</label>
-                    <input type="text" class="form-control" asp-for="Title" placeholder="title ... ">
-                    <span asp-validation-for="Title" class="alert-danger"></span>
-                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">General Form Elements</h5>
 
-                <div class="form-group col-md-6 mb-3">
-                    <label>PostId</label>
-                    <select asp-for="PostId" class="form-control"
-                        asp-items="@(new SelectList(ViewBag.mnList, "Value", "Text"))">
-                    </select>
-                </div>
+                        <!-- General Form Elements -->
+                        <form asp-controller="Post" asp-action="Edit">
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Danh mục</label>
+                                <div class="col-sm-10">
+                                    <select asp-for="MenuId" class="form-select"
+                                        asp-items="@(new SelectList(ViewBag.mnList, "Value", "Text"))" id="MenuId">
+                                    </select>
+                                </div>
+                            </div>
 
-                <div class="form-group col-md-6 mb-3">
-                    <label>Content</label>
-                    <input type="text" class="form-control" asp-for="Content"
-                        placeholder="Enter the order of item ... ">
-                </div>
+                            <div class="row mb-3">
+                                <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Title" class="form-control"/>
+                                    <span asp-validation-for="Title" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
 
-                <div class="form-group col-md-6 mb-3">
-                    <label>Image</label>
-                    <input type="text" class="form-control" asp-for="Image"
-                        placeholder="Enter the position ... ">
-                </div>
+                            <div class="row mb-3">
+                                <label for="inputSummary" class="col-sm-2 col-form-label">Summary</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Summary" class="form-control"/>
+                                    <span asp-validation-for="Summary" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
 
-                <div class="form-group col-md-6 mb-3">
-                    <label>
-                        @Html.CheckBox("IsActive", Model.IsActive)
-                        Visible
-                    </label>
+                            <div class="row mb-3">
+                                <label for="inputContent" class="col-sm-2 col-form-label">Content</label>
+                                <div class="col-sm-10">
+                                    <textarea asp-for="Content" class="form-control"></textarea>
+                                    <span asp-validation-for="Content" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <label for="inputNumber" class="col-sm-2 col-form-label">Ảnh</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group-prepend mb-2">
+                                        <button class="btn btn-success" type="button" onclick="openDialog()">Chọn ảnh</button>
+                                    </div>
+                                    <input asp-for="Image" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Kích hoạt</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="IsActive" class="form-check-input" type="checkbox"/>
+                                    <label class="form-check-label" for="IsActive">Example checkbox</label>
+                                    <span asp-validation-for="IsActive" class="text-danger mb-4"></span>
+                                    <input asp-for="IsActive" value="1" type="hidden" />
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Ngày tạo</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="CreatedDate" class="form-control" disabled/>
+                                    <span asp-validation-for="CreatedDate" class="text-danger mb-4"></span>
+                                    <input asp-for="CreatedDate" type="hidden" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Lượt xem</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="View" class="form-control" disabled/>
+                                    <span asp-validation-for="View" class="text-danger mb-4"></span>
+                                    <input asp-for="View" type="hidden" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Tác giả</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="AuthorId" class="form-control" disabled/>
+                                    <span asp-validation-for="AuthorId" class="text-danger mb-4"></span>
+                                    <input asp-for="AuthorId" type="hidden" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Submit Button</label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                                </div>
+                            </div>
+
+                        </form><!-- End General Form Elements -->
+                    </div>
                 </div>
             </div>
-            <a asp-controller="Menu" asp-action="Index" class="btn btn-lg btn-warning p-2">
-                <i class="bi bi-arrow-left-circle"></i>
-                Go back
-            </a>
+        </div>
+    </section>
 
-            <button type="submit" class="btn btn-1g btn-primary p-2">
-                <i class="bi bi-file-plus-fill"></i> Save information
-            </button>
-        </form>
-    </div>
-</main>
+</main><!-- End #main -->
 
 @{
     var summerNote = new TechNews.Areas.Admin.Models.SummerNote("#Content");
