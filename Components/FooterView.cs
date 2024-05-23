@@ -18,11 +18,18 @@ namespace TechNews.Components
             var postList = (from post in _context.Post
                             join menu in _context.Menu on post.MenuId equals menu.MenuId
                             //where (m.IsActive == true)
-                            select new 
+                            select new
                             {
                                 Post = post,
                                 Menu = menu
                             }).ToList();
+
+            var menus = _context.Menu
+            .Where(i => i.ParentId == 2)
+            .ToList();
+
+            ViewBag.Menu = menus;
+
             return await Task.FromResult((IViewComponentResult)View("Default", postList));
         }
     }

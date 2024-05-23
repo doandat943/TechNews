@@ -57,7 +57,7 @@ namespace TechNews.Controllers
             
             _context.Comment.Add(comment);
             _context.SaveChanges();
-            return NoContent();
+            return RedirectToAction("Index");
         }
     }
 }

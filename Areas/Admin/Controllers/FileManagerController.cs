@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace TechNews.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
     public class FileManagerController : Controller
     {
         public IActionResult Index()
@@ -35,7 +34,7 @@ namespace TechNews.Areas.Admin.Controllers
 
         private Connector GetConnector()
         {
-            string pathroot = "wwwroot/uploads";
+            string path = Path.Combine("wwwroot", "uploads");
             string requestUrl = "uploads";
 
             var driver = new FileSystemDriver();
@@ -43,7 +42,7 @@ namespace TechNews.Areas.Admin.Controllers
             string absoluteUrl = UriHelper.BuildAbsolute(Request.Scheme, Request.Host);
             var uri = new Uri(absoluteUrl);
 
-            string rootDirectory = Path.Combine(_env.ContentRootPath, pathroot);
+            string rootDirectory = Path.Combine(_env.ContentRootPath, path);
 
             string url = $"/{requestUrl}/";
             string urlthumb = $"{uri.Scheme}://{uri.Authority}/Admin/thumb/";
@@ -53,7 +52,7 @@ namespace TechNews.Areas.Admin.Controllers
                 IsReadOnly = false,
                 IsLocked = false,
                 Alias = "Files",
-                //MaxUploadSizeInKb = 2048, 
+                //MaxUploadSizeInKb = 2048,
                 ThumbnailSize = 100,
             };
             driver.AddRoot(root);

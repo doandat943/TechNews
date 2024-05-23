@@ -39,30 +39,30 @@ namespace TechNews.Ultilities
             return type + "/" + SlugGenerator.SlugGenerator.GenerateSlug(title) + "-" + id.ToString();
         }
 
-        public static string GetCurrentDate()
-        {
-            return DateTime.Now.ToString("yyyy-MM-dd hh:mm");
-        }
-
         public static string GetDiffTime(DateTime inputDate, bool isShort = false)
         {
             var timeDifference = DateTime.Now - inputDate;
-            if (timeDifference.TotalDays == 0)
+
+            if (timeDifference.TotalMinutes < 1)
             {
-                return timeDifference.TotalHours + " giờ trước";
+                return "Vừa xong";
             }
-            else if (timeDifference.TotalHours == 0)
+            else if (timeDifference.TotalHours < 1)
             {
-                return timeDifference.TotalMinutes + " phút trước";
+                return $"{timeDifference.TotalMinutes:F0} phút trước";
             }
-            else if (isShort == true)
+            else if (timeDifference.TotalDays < 1)
             {
-                return inputDate.ToString("yyyy-MM-dd");
+                return $"{timeDifference.TotalHours:F0} giờ trước";
             }
             else
             {
-                return inputDate.ToString("yyyy-MM-dd HH:mm");
+                return DateFormat(inputDate, isShort);
             }
+        }
+
+        public static string DateFormat(DateTime inputDate, bool isShort = false) {
+            return inputDate.ToString("dddd, dd/MM/yyyy | HH:mm");
         }
 
         public static string TruncateTitle(string title, int maxLength)

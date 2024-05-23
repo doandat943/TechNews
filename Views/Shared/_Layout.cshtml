@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using TechNews.Ultilities
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>TechNews - Free News Website Template</title>
+    <title>TechNews - Tin tức công nghệ</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -33,7 +34,7 @@
                 <nav class="navbar navbar-expand-sm bg-dark p-0">
                     <ul class="navbar-nav ml-n2">
                         <li class="nav-item border-right border-secondary">
-                            <a class="nav-link text-body small" href="#">@DateTime.Now.ToString("dddd, MMMM d, yyyy")</a>
+                            <a class="nav-link text-body small" href="#">@Functions.DateFormat(DateTime.Now)</a>
                         </li>
                         <li class="nav-item border-right border-secondary">
                             <a class="nav-link text-body small" href="#">Quảng cáo</a>
@@ -42,7 +43,7 @@
                             <a class="nav-link text-body small" href="#">Liên hệ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-body small" href="/Admin">Đăng nhập</a>
+                            <a class="nav-link text-body small" href="/Admin/Login">Đăng nhập</a>
                         </li>
                     </ul>
                 </nav>
@@ -78,9 +79,6 @@
                     <h1 class="m-0 display-4 text-uppercase text-primary">Tech<span class="text-secondary font-weight-normal">News</span></h1>
                 </a>
             </div>
-            <div class="col-lg-8 text-center text-lg-right">
-                <a href="https://htmlcodex.com"><img class="img-fluid" src="~/assets/img/ads-728x90.png" alt=""></a>
-            </div>
         </div>
     </div>
     <!-- Topbar End -->
@@ -92,7 +90,6 @@
     @RenderBody()
 
     @await Component.InvokeAsync("FooterView")
-
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary btn-square back-to-top"><i class="fa fa-arrow-up"></i></a>

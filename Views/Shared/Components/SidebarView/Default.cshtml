@@ -5,7 +5,7 @@
     <!-- Social Follow Start -->
     <div class="mb-3">
         <div class="section-title mb-0">
-            <h4 class="m-0 text-uppercase font-weight-bold">Follow Us</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">Theo dõi</h4>
         </div>
         <div class="bg-white border border-top-0 p-3">
             <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #39569E;">
@@ -42,10 +42,10 @@
     <!-- Ads Start -->
     <div class="mb-3">
         <div class="section-title mb-0">
-            <h4 class="m-0 text-uppercase font-weight-bold">Advertisement</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">Quảng cáo</h4>
         </div>
         <div class="bg-white text-center border border-top-0 p-3">
-            <a href=""><img class="img-fluid" src="img/news-800x500-2.jpg" alt=""></a>
+            <a href=""><img class="img-fluid" src="/uploads/img-share.jpg" alt=""></a>
         </div>
     </div>
     <!-- Ads End -->
@@ -53,7 +53,7 @@
     <!-- Popular News Start -->
     <div class="mb-3">
         <div class="section-title mb-0">
-            <h4 class="m-0 text-uppercase font-weight-bold">Tranding News</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">Tin nổi bật</h4>
         </div>
         <div class="bg-white border border-top-0 p-3">
             @foreach (var item in Model.Where(p => p.Post.IsActive == true).OrderBy(p => p.Post.CreatedDate).Take(3))
@@ -63,8 +63,8 @@
                     <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
                         <div class="mb-2">
                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
-                                href="">@item.Menu.MenuName</a>
-                            <a class="text-body" href=""><small>@Functions.GetDiffTime(item.Post.CreatedDate)</small></a>
+                                href="/category/@item.Menu.MenuId">@item.Menu.MenuName</a>
+                            <a class="text-body"><small>@Functions.GetDiffTime(item.Post.CreatedDate)</small></a>
                         </div>
                         <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="/@Functions.TitleSlugGenerate("post", item.Post.Title, item.Post.PostId)">@Functions.TruncateTitle(item.Post.Title, 50)</a>
                     </div>
@@ -77,17 +77,16 @@
     <!-- Newsletter Start -->
     <div class="mb-3">
         <div class="section-title mb-0">
-            <h4 class="m-0 text-uppercase font-weight-bold">Newsletter</h4>
+            <h4 class="m-0 text-uppercase font-weight-bold">Bản tin</h4>
         </div>
         <div class="bg-white text-center border border-top-0 p-3">
-            <p>Aliqu justo et labore at eirmod justo sea erat diam dolor diam vero kasd</p>
+            <p>Hãy nhập email của bạn để nhận bản tin mới nhất của chúng tôi qua email</p>
             <div class="input-group mb-2" style="width: 100%;">
-                <input type="text" class="form-control form-control-lg" placeholder="Your Email">
+                <input type="text" class="form-control form-control-lg" placeholder="Email">
                 <div class="input-group-append">
-                    <button class="btn btn-primary font-weight-bold px-3">Sign Up</button>
+                    <button class="btn btn-primary font-weight-bold px-3">Đăng ký</button>
                 </div>
             </div>
-            <small>Lorem ipsum dolor sit amet elit</small>
         </div>
     </div>
     <!-- Newsletter End -->

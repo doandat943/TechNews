@@ -25,8 +25,8 @@
                 <div class="mb-3">
                     <div class="mb-2">
                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2"
-                            href="">@item.Menu.MenuName</a>
-                        <a class="text-body" href=""><small>@item.Post.CreatedDate</small></a>
+                            href="/category/@item.Menu.MenuId">@item.Menu.MenuName</a>
+                        <a class="text-body"><small>@Functions.GetDiffTime(item.Post.CreatedDate)</small></a>
                     </div>
                     <a class="small text-body text-uppercase font-weight-medium" href="/@Functions.TitleSlugGenerate("post", item.Post.Title, item.Post.PostId)">@Functions.TruncateTitle(item.Post.Title, 50)</a>
                 </div>
@@ -35,9 +35,9 @@
         <div class="col-lg-3 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Danh mục</h5>
             <div class="m-n1">
-                @foreach (var menu in Model.Select(m => m.Menu).Distinct())
+                @foreach (var item in ViewBag.Menu)
                 {
-                    <a href="@menu.Link" class="btn btn-sm btn-secondary m-1">@menu.MenuName</a>
+                    <a href="/category/@item.MenuId" class="btn btn-sm btn-secondary m-1">@item.MenuName</a>
                 }
             </div>
         </div>

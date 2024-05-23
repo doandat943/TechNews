@@ -25,8 +25,7 @@
                                         <div class="mb-2">
                                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
                                                 href="">@item.MenuName</a>
-                                            <a class="text-body"
-                                                href=""><small>@Functions.GetDiffTime(post.CreatedDate)</small></a>
+                                            <a class="text-body"><small>@Functions.GetDiffTime(post.CreatedDate, true)</small></a>
                                         </div>
                                         <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="/@Functions.TitleSlugGenerate("post", post.Title, post.PostId)">@Functions.TruncateTitle(post.Title, 50)</a>
                                         <p class="m-0">@Functions.TruncateTitle(post.Summary, 100)</p>
