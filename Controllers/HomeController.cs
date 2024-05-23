@@ -40,7 +40,7 @@ public class HomeController : Controller
         var menuId = query.Select(x => x.MenuId).ToList();
 
         var posts = _context.Post
-        .Where(post => menuId.Contains(post.PostId))
+        .Where(post => menuId.Contains(post.MenuId))
         .ToList();
 
         ViewBag.Post = posts;

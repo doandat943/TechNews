@@ -35,8 +35,8 @@ namespace TechNews.Areas.Admin.Controllers
 
         private Connector GetConnector()
         {
-            string pathroot = "uploads";
-            string requestUrl = "files";
+            string pathroot = "wwwroot/uploads";
+            string requestUrl = "uploads";
 
             var driver = new FileSystemDriver();
 

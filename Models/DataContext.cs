@@ -7,6 +7,10 @@ namespace TechNews.Models
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Account> Account { get; set; }
+
+        public DbSet<Gender> Gender { get; set; }
+
+        public DbSet<Role> Role { get; set; }
         
         public DbSet<Menu> Menu { get; set; }
 

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using TechNews.Ultilities;
 
 namespace TechNews.Areas.Admin.Controllers
 {
@@ -14,6 +15,15 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            return View();
+        }
+
+        public IActionResult Logout()
+        {
+            Functions._AccountId = String.Empty;
+            Functions._AccountName = String.Empty;
+            Functions._AccountType = String.Empty;
+            Functions._Message = String.Empty;
             return View();
         }
 

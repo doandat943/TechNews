@@ -1,5 +1,6 @@
 @using TechNews.Models;
 @using PagedList.Core.Mvc;
+@using TechNews.Ultilities
 @model PagedList.Core.IPagedList<Post>
 
 @{
@@ -43,9 +44,7 @@
                                         {
                                         <tr>
                                             <td class="text-center" scope="row">@item.PostId</td>
-                                            <td class="text-left text-primary" scope="row"><a asp-area="Admin"
-                                                    asp-controller="Menu" asp-action="Details"
-                                                    asp-route-id="@item.MenuId">@item.Title</a></td>
+                                            <td class="text-left text-primary" scope="row"><a href="/@Functions.TitleSlugGenerate("post", item.Title, item.PostId)">@item.Title</a></td>
                                             <td class="text-center" scope="row">@item.Summary</td>
                                             <td class="text-center" scope="row">@item.AuthorId</td>
                                             <td class="text-center" scope="row">@item.IsActive</td>
