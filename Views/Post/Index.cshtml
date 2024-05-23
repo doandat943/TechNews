@@ -1,6 +1,10 @@
 @model IEnumerable<dynamic>
 @using TechNews.Ultilities
 
+@{
+    var postId = 0;
+}
+
 <!-- Breaking News Start -->
 <div class="container-fluid mt-5 mb-3 pt-3">
     <div class="container">
@@ -35,11 +39,12 @@
                 <div class="position-relative mb-3">
                     @foreach (var item in Model.Select(i => i).DistinctBy(i => i.Post.PostId))
                     {
+                        postId = item.Post.PostId;
                         <img class="img-fluid w-100" src="@item.Post.Image" style="object-fit: cover;">
                         <div class="bg-white border border-top-0 p-4">
                             <div class="mb-3">
                                 <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                    href="">@item.MenuNamee</a>
+                                    href="">@item.MenuName</a>
                                 <a class="text-body" href="">@item.Post.CreatedDate</a>
                             </div>
                             <h1 class="mb-3 text-secondary text-uppercase font-weight-bold">@item.Post.Title</h1>
@@ -69,9 +74,11 @@
                     {
                         <div class="bg-white border border-top-0 p-4">
                             <div class="media mb-4">
-                                <img src="/assets/img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                <img src="/assets/img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
+                                    style="width: 45px;">
                                 <div class="media-body">
-                                    <h6><a class="text-secondary font-weight-bold" href=""></a> <small><i>@Functions.GetDiffTime(item.CreatedDate)</i></small></h6>
+                                    <h6><a class="text-secondary font-weight-bold" href=""></a>
+                                        <small><i>@Functions.GetDiffTime(item.CreatedDate)</i></small></h6>
                                     <p>@item.Content</p>
                                     <button class="btn btn-sm btn-outline-secondary">Reply</button>
                                 </div>
@@ -88,30 +95,33 @@
                         <h4 class="m-0 text-uppercase font-weight-bold">Leave a comment</h4>
                     </div>
                     <div class="bg-white border border-top-0 p-4">
-                        <form>
+                        <form asp-controller="Post" asp-action="Comment">
                             <div class="form-row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="name">Name *</label>
-                                        <input type="text" class="form-control" id="name">
+                                        <input type="text" class="form-control" id="name" name="Name" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="email">Email *</label>
-                                        <input type="email" class="form-control" id="email">
+                                        <input type="email" class="form-control" id="email" name="Email" required>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="website">Website</label>
-                                <input type="url" class="form-control" id="website">
                             </div>
 
                             <div class="form-group">
                                 <label for="message">Message *</label>
-                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                <textarea id="message" cols="30" rows="5" class="form-control" name="Content"
+                                    required></textarea>
                             </div>
+
+
+                            <div class="form-group d-none">
+                                <input class="form-control" name="PostId" value="@postId" />
+                            </div>
+
                             <div class="form-group mb-0">
                                 <input type="submit" value="Leave a comment"
                                     class="btn btn-primary font-weight-semi-bold py-2 px-3">

@@ -5,27 +5,32 @@ namespace TechNews.Ultilities
 {
     public class Functions
     {
-        public static string _AccountId = String.Empty;
-        public static string _AccountName = String.Empty;
-        public static string _AccountType = String.Empty;
-        public static string _Message = String.Empty;
+        public static string? _AccountId = String.Empty;
+        public static string? _AccountName = String.Empty;
+        public static string? _AccountType = String.Empty;
+        public static string? _Message = String.Empty;
 
-        public static string MD5Hash(string text)
+        public static string CalculateMD5Hash(string input)
         {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
-            byte[] result = md5.Hash;
-            StringBuilder strBuilder = new StringBuilder();
-            for (int i = 0; i < result.Length; i++)
-                strBuilder.Append(result[i].ToString("x2"));
-            return strBuilder.ToString();
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    stringBuilder.Append(hashBytes[i].ToString("x2"));
+                }
+                return stringBuilder.ToString();
+            }
         }
-        
-        public static string MD5Password(string? text)
+
+        public static string MD5Password(string text)
         {
-            string str = MD5Hash(text);
+            string str = CalculateMD5Hash(text);
             for (int i = 0; i <= 5; i++)
-                str = MD5Hash(str + str);
+                str = CalculateMD5Hash(str + str);
             return str;
         }
 
@@ -34,7 +39,8 @@ namespace TechNews.Ultilities
             return type + "/" + SlugGenerator.SlugGenerator.GenerateSlug(title) + "-" + id.ToString();
         }
 
-        public static string GetCurrentDate(){
+        public static string GetCurrentDate()
+        {
             return DateTime.Now.ToString("yyyy-MM-dd hh:mm");
         }
 
