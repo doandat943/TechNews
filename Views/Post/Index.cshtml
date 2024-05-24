@@ -45,7 +45,7 @@
                             <div class="mb-3">
                                 <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
                                     href="">@item.MenuName</a>
-                                <a class="text-body" href="">@item.Post.CreatedDate</a>
+                                <span>@Functions.GetDiffTime(item.Post.CreatedDate)</span>
                             </div>
                             <h1 class="mb-3 text-secondary text-uppercase font-weight-bold">@item.Post.Title</h1>
                             <p>@Html.Raw(item.Post.Content)</p>

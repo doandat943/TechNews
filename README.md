@@ -15,10 +15,42 @@ using ASP.NET Core and EntityFramework Core.
 
 ## How To Run
 
-* Go to project folder
-* Migrate database structure `dotnet ef migrations add InitialCreate`
-* Update database structure `dotnet ef database update`
-* Run the application `dotnet run`
+### 1. Go to the project folder
+```sh
+cd path/to/your/project
+```
+
+### 2. Set database environment
+
+#### On Windows:
+```sh
+set DBHOST=joverse.us
+set DBPORT=3001
+set DBPASSWORD=12345678
+dotnet watch run
+```
+
+#### On Linux/macOS:
+```sh
+export DBHOST=joverse.us
+export DBPORT=3001
+export DBPASSWORD=12345678
+```
+
+### 3. Migrate database structure
+```sh
+dotnet ef migrations add InitialCreate
+```
+
+### 4. Update database structure
+```sh
+dotnet ef database update
+```
+
+### 5. Run the application
+```sh
+dotnet run
+```
 
 ## Build Image
 

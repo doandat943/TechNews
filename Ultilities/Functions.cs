@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -39,7 +40,7 @@ namespace TechNews.Ultilities
             return type + "/" + SlugGenerator.SlugGenerator.GenerateSlug(title) + "-" + id.ToString();
         }
 
-        public static string GetDiffTime(DateTime inputDate, bool isShort = false)
+        public static string GetDiffTime(DateTime inputDate, int typeShow = 0)
         {
             var timeDifference = DateTime.Now - inputDate;
 
@@ -57,11 +58,22 @@ namespace TechNews.Ultilities
             }
             else
             {
-                return DateFormat(inputDate, isShort);
+                return DateFormat(inputDate, typeShow);
             }
         }
 
-        public static string DateFormat(DateTime inputDate, bool isShort = false) {
+        public static string DateFormat(DateTime inputDate, int typeShow = 0)
+        {
+            CultureInfo.CurrentCulture = new CultureInfo("vi-VN");
+
+            if (typeShow == 1)
+            {
+                return inputDate.ToString("dd/MM/yyyy");
+            }
+            else if (typeShow == 2)
+            {
+                return inputDate.ToString("dd/MM/yyyy | HH:mm");
+            }
             return inputDate.ToString("dddd, dd/MM/yyyy | HH:mm");
         }
 

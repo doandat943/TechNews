@@ -15,12 +15,12 @@ namespace TechNews.Areas.Admin.Controllers
             _context = context;
         }
 
-        //[Route("/Admin/post-index(page:int).html", Name = "PostIndex")]
+        [Route("/Admin/Post/Index", Name = "PostIndex")]
         public IActionResult Index(int page = 1)
         {
             var post = _context.Post.OrderByDescending(p => p.PostId);
             int pageSize = 10;
-            PagedList<Post> models = new PagedList<Post>(post, 1, pageSize);
+            PagedList<Post> models = new PagedList<Post>(post, page, pageSize);
             if (models == null) return NotFound();
             return View(models);
         }
@@ -28,6 +28,7 @@ namespace TechNews.Areas.Admin.Controllers
         public IActionResult Create()
         {
             var mnList = (from m in _context.Menu
+                          where m.Level == 2
                           select new SelectListItem()
                           {
                               Text = m.MenuName,
@@ -41,6 +42,7 @@ namespace TechNews.Areas.Admin.Controllers
             ViewBag.mnList = mnList;
             return View();
         }
+
         [HttpPost]
         public IActionResult Create(Post post)
         {
@@ -51,6 +53,7 @@ namespace TechNews.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -64,6 +67,7 @@ namespace TechNews.Areas.Admin.Controllers
             }
             return View(mn);
         }
+        
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -82,6 +86,7 @@ namespace TechNews.Areas.Admin.Controllers
             if (mn == null)
                 return NotFound();
             var mnList = (from m in _context.Menu
+                          where m.Level == 2
                           select new SelectListItem()
                           {
                               Text = m.MenuName,

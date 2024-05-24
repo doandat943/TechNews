@@ -14,6 +14,7 @@ namespace TechNews.Areas.Admin.Controllers
         }
 
         IWebHostEnvironment _env;
+
         public FileManagerController(IWebHostEnvironment env) => _env = env;
 
         [Route("Admin/connector")]
@@ -23,8 +24,6 @@ namespace TechNews.Areas.Admin.Controllers
             return await connector.ProcessAsync(Request);
         }
 
-        // Địa chỉ để truy vấn thumbnail
-        // /el-finder-file-system/thumb
         [Route("Admin/thumb/{hash}")]
         public async Task<IActionResult> Thumbs(string hash)
         {

@@ -4,14 +4,15 @@ using TechNews.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Database connection
-var host = builder.Configuration["DBHOST"] ?? "localhost";
-var port = builder.Configuration["DBPORT"] ?? "3306";
-var password = builder.Configuration["DBPASSWORD"] ?? "12345678";
+var host = builder.Configuration["DBHOST"];
+var port = builder.Configuration["DBPORT"];
+var userid = builder.Configuration["DBUSERID"];
+var password = builder.Configuration["DBPASSWORD"];
 
 // Add DbContext
 builder.Services.AddDbContextPool<DataContext>(options =>
 {
-    options.UseMySQL($"server={host};userid=root;pwd={password};port={port};database=TechNews");
+    options.UseMySQL($"server={host};port={port};userid={userid};pwd={password};database=TechNews");
 });
 
 // Add services to the container.

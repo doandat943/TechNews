@@ -30,4 +30,7 @@ services:
       - "8080:8080"
     environment:
       - DBHOST=db
+      - DBPORT=3306
+      - DBUSERID=root
+      - DBPASSWORD=12345678
       - ASPNETCORE_ENVIRONMENT=Development
