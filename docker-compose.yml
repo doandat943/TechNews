@@ -22,7 +22,7 @@ services:
       - 3000:80
 
   mvc:
-    image: technews
+    image: doandat943/technews
     restart: always
     depends_on:
       - db

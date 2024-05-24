@@ -16,8 +16,9 @@ using ASP.NET Core and EntityFramework Core.
 ## How To Run
 
 * Go to project folder
-* Migrate database ```dotnet ef database update```
-* Run the application ```dotnet run```
+* Migrate database structure `dotnet ef migrations add InitialCreate`
+* Update database structure `dotnet ef database update`
+* Run the application `dotnet run`
 
 ## Build Image
 
