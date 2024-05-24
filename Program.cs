@@ -4,12 +4,27 @@ using TechNews.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Database connection
-builder.Services.AddDbContext<DataContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Default")!));
+var host = builder.Configuration["DBHOST"] ?? "localhost";
+var port = builder.Configuration["DBPORT"] ?? "3306";
+var password = builder.Configuration["DBPASSWORD"] ?? "12345678";
+
+// Add DbContext
+builder.Services.AddDbContextPool<DataContext>(options =>
+{
+    options.UseMySQL($"server={host};userid=root;pwd={password};port={port};database=TechNews");
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// Apply migrations at runtime
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+    dbContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
