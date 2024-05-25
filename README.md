@@ -24,30 +24,34 @@ cd path/to/your/project
 
 #### On Windows:
 ```sh
-set DBHOST=joverse.us
-set DBPORT=3001
-set DBPASSWORD=12345678
-dotnet watch run
+set DBHOST=your_database_host
+set DBPORT=your_database_port
+set DBUSERID=your_database_userid
+set DBPASSWORD=your_database_password
 ```
 
 #### On Linux/macOS:
 ```sh
-export DBHOST=joverse.us
-export DBPORT=3001
-export DBPASSWORD=12345678
+export DBHOST=your_database_host
+export DBPORT=your_database_port
+export DBUSERID=your_database_userid
+export DBPASSWORD=your_database_password
 ```
 
 ### 3. Migrate database structure
+
 ```sh
 dotnet ef migrations add InitialCreate
 ```
 
 ### 4. Update database structure
+
 ```sh
 dotnet ef database update
 ```
 
 ### 5. Run the application
+
 ```sh
 dotnet run
 ```
@@ -59,3 +63,8 @@ dotnet publish /p:PublishProfile=DefaultContainer
 docker-compose build
 docker-compose up
 ```
+
+## Credits
+
+- Homepage template: [Biznews by HTML Codex](https://htmlcodex.com/free-news-website-template/)
+- Admin template: [NiceAdmin by BootstrapMade](https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/)

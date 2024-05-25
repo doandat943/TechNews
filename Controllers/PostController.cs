@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using TechNews.Models;
+using TechNews.Ultilities;
 
 namespace TechNews.Controllers
 {
@@ -54,10 +55,10 @@ namespace TechNews.Controllers
         public ActionResult Comment(Comment comment)
         {
             if (comment == null) return NotFound();
-            
+            comment.CreatedDate = DateTime.Now;
             _context.Comment.Add(comment);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return NoContent();
         }
     }
 }

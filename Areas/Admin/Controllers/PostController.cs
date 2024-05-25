@@ -36,7 +36,7 @@ namespace TechNews.Areas.Admin.Controllers
                           }).ToList();
             mnList.Insert(0, new SelectListItem()
             {
-                Text = "--- Select ---",
+                Text = "--- Chọn ---",
                 Value = string.Empty
             });
             ViewBag.mnList = mnList;
@@ -50,8 +50,9 @@ namespace TechNews.Areas.Admin.Controllers
             {
                 _context.Post.Add(post);
                 _context.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return View(post);
         }
 
         public IActionResult Delete(int? id)
@@ -106,6 +107,7 @@ namespace TechNews.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                mn.CreatedDate = DateTime.Now;
                 _context.Post.Update(mn);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
