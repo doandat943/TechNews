@@ -27,7 +27,7 @@ namespace TechNews.Controllers
             var query = from post in _context.Post
                         join menu in _context.Menu on post.MenuId equals menu.MenuId
                         join account in _context.Account on post.AuthorId equals account.AccountId
-                        where post.PostId == id && post.IsActive
+                        where post.PostId == id
                         select new
                         {
                             Post = post,

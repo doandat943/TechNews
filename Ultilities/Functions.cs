@@ -93,5 +93,13 @@ namespace TechNews.Ultilities
 
             return truncated + "...";
         }
+
+        public static bool IsLogin() {
+            if (Functions._AccountId == String.Empty)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

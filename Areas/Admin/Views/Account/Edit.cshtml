@@ -1,0 +1,92 @@
+@model TechNews.Models.Account;
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <a class="btn btn-1g btn-warning" href="javascript:history.back()">
+            <i class="bi bi-arrow-left-circle"></i> Quay lại
+        </a>
+    </div>
+
+    <section class="section">
+        <div class="row">
+            <div class="col">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Chỉnh sửa tai khoan</h5>
+
+                        <!-- General Form Elements -->
+                        <form asp-controller="Account" asp-action="Edit">
+                    
+                            <div class="row mb-3">
+                                <label for="inputSummary" class="col-sm-2 col-form-label">Ten</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputContent" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <textarea asp-for="Email" class="form-control"></textarea>
+                                    <span asp-validation-for="Email" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputImage" class="col-sm-2 col-form-label">Ảnh</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group-prepend mb-2">
+                                        <button class="btn btn-success" type="button" onclick="openDialog()"><i
+                                                class="bi bi-image"></i> Chọn ảnh</button>
+                                    </div>
+                                    <input asp-for="Avatar" class="form-control" id="file_input">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputCategory" class="col-sm-2 col-form-label">Gioi tinh</label>
+                                <div class="col-sm-10">
+                                    <select asp-for="GenderId" class="form-select"
+                                        asp-items="@(new SelectList(ViewBag.mnGender, "Value", "Text"))" id="GenderId">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputCategory" class="col-sm-2 col-form-label">Quyen han</label>
+                                <div class="col-sm-10">
+                                    <select asp-for="RoleId" class="form-select"
+                                        asp-items="@(new SelectList(ViewBag.mnRole, "Value", "Text"))" id="RoleId">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <input asp-for="AccountId" class="form-control" hidden />
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Thao tác</label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-floppy"></i>Lưu</button>
+                                </div>
+                            </div>
+
+                        </form><!-- End General Form Elements -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+@{
+    var summerNote = new TechNews.Areas.Admin.Models.SummerNote("#Content");
+    <partial name="_SummerNote" model="summerNote" />
+}

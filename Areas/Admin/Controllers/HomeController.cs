@@ -15,6 +15,10 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View();
         }
 
@@ -24,7 +28,7 @@ namespace TechNews.Areas.Admin.Controllers
             Functions._AccountName = String.Empty;
             Functions._AccountType = String.Empty;
             Functions._Message = String.Empty;
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
