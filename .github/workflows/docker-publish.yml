@@ -63,7 +63,7 @@ jobs:
       - name: Publish .NET application as Docker container
         id: build-and-push
         run: |
-          dotnet publish /p:PublishProfile=DefaultContainer /p:ContainerRegistry=${{ env.REGISTRY }} /p:ContainerRepository=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          dotnet publish /p:PublishProfile=DefaultContainer /p:ContainerRegistry=${{ env.REGISTRY }} /p:ContainerRepository=${{ env.IMAGE_NAME }}
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
