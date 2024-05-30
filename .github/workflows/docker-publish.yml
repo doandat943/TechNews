@@ -55,4 +55,6 @@ jobs:
       - name: Publish .NET application as Docker container
         id: build-and-push
         run: |
+          dotnet tool install --global dotnet-ef
+          dotnet ef migrations add InitialCreate
           dotnet publish /p:PublishProfile=DefaultContainer /p:ContainerRegistry=${{ env.REGISTRY }} /p:ContainerRepository=${{ env.IMAGE_NAME }}
