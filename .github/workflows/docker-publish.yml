@@ -27,37 +27,55 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Install .NET SDK
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
+      # Install the cosign tool except on PR
+      # https://github.com/sigstore/cosign-installer
+      - name: Install Cosign
+        if: github.event_name != 'pull_request'
+        uses: sigstore/cosign-installer@v3.5.0
+        with:
+          cosign-release: 'v2.2.4'
+
+      # Set up .NET Core SDK
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4.0.0
         with:
           dotnet-version: '8.x'
 
-      # Install the cosign tool except on PR
-      - name: Install cosign
-        if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@v3.1.1
-        with:
-          cosign-release: 'v2.1.1'
-
       # Login against a Docker registry except on PR
-      - name: Log into registry ${{ env.REGISTRY }}
+      # https://github.com/docker/login-action
+      - name: Login to ${{ env.REGISTRY }}
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
+        uses: docker/login-action@v3 # v3.0.0
         with:
-          registry: docker.io
-          username: doandat943
-          password: dckr_pat_n1kw92gYnPr6-hrW2g2kYWRdRZQ
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Build and publish the Docker image using dotnet publish
-      - name: Build and publish Docker image
-        run: dotnet publish /p:PublishProfile=DefaultContainer
+      # Extract metadata (tags, labels) for Docker
+      # https://github.com/docker/metadata-action
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      # Extract Docker image tag
-      - name: Extract Docker image tag
-        id: extract-docker-tag
-        run: docker image tag technews:latest doandat943/technews:latest
-      # Push the Docker image
-      - name: Push Docker image
-        run: docker push doandat943/technews:latest
-      
+      # Build and publish .NET application as Docker container
+      - name: Publish .NET application as Docker container
+        id: build-and-push
+        run: |
+          dotnet publish /p:PublishProfile=DefaultContainer /p:ContainerRegistry=${{ env.REGISTRY }} /p:ContainerRepository=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      # Sign the resulting Docker image digest except on PRs.
+      # This will only write to the public Rekor transparency log when the Docker
+      # repository is public to avoid leaking data.  If you would like to publish
+      # transparency data even for private images, pass --force to cosign below.
+      # https://github.com/sigstore/cosign
+      - name: Sign the published Docker image
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+          # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
+          TAGS: ${{ steps.meta.outputs.tags }}
+          DIGEST: ${{ steps.build-and-push.outputs.digest }}
+        # This step uses the identity token to provision an ephemeral certificate
+        # against the sigstore community Fulcio instance.
+        run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
