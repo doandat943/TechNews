@@ -1,11 +1,28 @@
 # Important
 
-Issues of this repository are tracked on https://github.com/aspnetboilerplate/aspnetboilerplate. Please create your issues on https://github.com/aspnetboilerplate/aspnetboilerplate/issues.
+Issues of this repository are tracked. Please create your issues on https://github.com/doandat943/TechNews/issues.
 
-# ASP.NET Core & EntityFramework Core Based Startup Template
+# TechNews
 
-This template is a simple startup project to start with ABP
-using ASP.NET Core and EntityFramework Core.
+TechNews is a modern online news website that provides the latest and most exciting technology news. Built on the ASP.NET Core framework with a MySQL database, TechNews leverages the MVC (Model-View-Controller) architecture to deliver a smooth and efficient user experience.
+
+## Key Features
+
+- **Technology News**: Continuously updated articles about the latest technology trends.
+- **Content Management**: Easily manage articles, categories, and authors through an admin interface.
+- **Responsive Design**: User-friendly interface compatible with all devices, from desktops to mobile phones.
+- **Advanced Search**: Allows users to search and filter articles based on various criteria.
+
+## Technologies Used
+
+- **ASP.NET Core**: A powerful framework by Microsoft for building web applications.
+- **MySQL**: A popular open-source relational database management system.
+- **MVC (Model-View-Controller)**: A software design pattern that separates the application into distinct sections, making the codebase easier to maintain and extend.
+- **Entity Framework Core**: An ORM (Object-Relational Mapping) tool that simplifies database interactions.
+
+# Getting Started
+
+To get started with the TechNews project, follow the instructions below in this document.
 
 ## Prerequirements
 
@@ -56,7 +73,7 @@ dotnet ef database update
 dotnet run
 ```
 
-## Build Image
+## Build and run with Docker
 
 ```
 dotnet publish /p:PublishProfile=DefaultContainer
