@@ -6,7 +6,8 @@ namespace TechNews.Models
     {
         [Key]
         public int RoleId { get; set; }
-        public string? RoleName { get; set; }
-    }
 
+        [Required]
+        public string RoleName { get; set; }
+    }
 }

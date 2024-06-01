@@ -6,6 +6,8 @@ namespace TechNews.Models
     {
         [Key]
         public int GenderId { get; set; }
-        public string? GenderName { get; set; }
+
+        [Required]
+        public string GenderName { get; set; }
     }
 }

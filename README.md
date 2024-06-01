@@ -33,6 +33,7 @@ To get started with the TechNews project, follow the instructions below in this 
 ## How To Run
 
 ### 1. Go to the project folder
+
 ```sh
 cd path/to/your/project
 ```
@@ -40,6 +41,7 @@ cd path/to/your/project
 ### 2. Set database environment
 
 #### On Windows:
+
 ```sh
 set DBHOST=your_database_host
 set DBPORT=your_database_port
@@ -48,6 +50,7 @@ set DBPASSWORD=your_database_password
 ```
 
 #### On Linux/macOS:
+
 ```sh
 export DBHOST=your_database_host
 export DBPORT=your_database_port
@@ -77,11 +80,10 @@ dotnet run
 
 ```
 dotnet publish /p:PublishProfile=DefaultContainer
-docker-compose build
 docker-compose up
 ```
 
 ## Credits
 
-- Homepage template: [Biznews by HTML Codex](https://htmlcodex.com/free-news-website-template/)
+- Homepage template: [BizNews by HTML Codex](https://htmlcodex.com/free-news-website-template/)
 - Admin template: [NiceAdmin by BootstrapMade](https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/)

@@ -6,15 +6,31 @@ namespace TechNews.Models
     {
         [Key]
         public int MenuId { get; set; }
-        public string? MenuName { get; set; }
-        public bool IsActive { get; set; }
-        public string? ControllerName { get; set; }
-        public string? ActionName { get; set; }
-        public string? Target { get; set; }
-        public int Level { get; set; }
-        public int? ParentId { get; set; } // Nullable to represent root menu items
-        public int MenuOrder { get; set; }
-        public string? Icon { get; set; }
-    }
 
+        [Required]
+        public string MenuName { get; set; }
+
+        [Required]
+        public bool IsActive { get; set; }
+
+        [Required]
+        public string ControllerName { get; set; }
+
+        [Required]
+        public string ActionName { get; set; }
+
+        [Required]
+        public int Level { get; set; }
+
+        public int? ParentId { get; set; }
+
+        [Required]
+        public int MenuOrder { get; set; }
+
+        [Required]
+        public string Target { get; set; }
+
+        [Required]
+        public string Icon { get; set; }
+    }
 }
