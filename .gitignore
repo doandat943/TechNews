@@ -275,4 +275,5 @@ __pycache__/
 
 # My ignore
 [Dd]ist/
-[Mm]igrations/
+[Mm]igrations/*
+![Mm]igrations/DataContextModelSnapshot.cs
