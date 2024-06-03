@@ -5,9 +5,8 @@ namespace TechNews.Models
     public class Gender
     {
         [Key]
-        public int GenderId { get; set; }
+        public required int GenderId { get; set; }
 
-        [Required]
-        public string GenderName { get; set; }
+        public required string GenderName { get; set; }
     }
 }

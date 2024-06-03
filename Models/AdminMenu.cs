@@ -5,32 +5,24 @@ namespace TechNews.Models
     public class AdminMenu
     {
         [Key]
-        public int MenuId { get; set; }
+        public required int MenuId { get; set; }
 
-        [Required]
-        public string MenuName { get; set; }
+        public required string MenuName { get; set; }
 
-        [Required]
-        public bool IsActive { get; set; }
+        public required bool IsActive { get; set; }
 
-        [Required]
-        public string ControllerName { get; set; }
+        public required string ControllerName { get; set; }
 
-        [Required]
-        public string ActionName { get; set; }
+        public required string ActionName { get; set; }
 
-        [Required]
-        public int Level { get; set; }
+        public required int Level { get; set; }
 
         public int? ParentId { get; set; }
 
-        [Required]
-        public int MenuOrder { get; set; }
+        public required int MenuOrder { get; set; }
 
-        [Required]
-        public string Target { get; set; }
+        public required string Target { get; set; }
 
-        [Required]
-        public string Icon { get; set; }
+        public required string Icon { get; set; }
     }
 }

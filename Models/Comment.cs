@@ -6,25 +6,19 @@ namespace TechNews.Models
     public class Comment
     {
         [Key]
-        public int CommentId { get; set; }
+        public required int CommentId { get; set; }
 
-        [Required]
-        public int PostId { get; set; }
+        public required int PostId { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        public required string Email { get; set; }
 
-        [Required]
-        public string Content { get; set; }
+        public required string Content { get; set; }
 
-        [Required]
-        public DateTime CreatedDate { get; set; }
+        public required DateTime CreatedDate { get; set; }
 
         [ForeignKey("PostId")]
-        public virtual Post Post { get; set; }
+        public virtual Post? Post { get; set; }
     }
 }

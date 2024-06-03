@@ -5,9 +5,8 @@ namespace TechNews.Models
     public class Role
     {
         [Key]
-        public int RoleId { get; set; }
+        public required int RoleId { get; set; }
 
-        [Required]
-        public string RoleName { get; set; }
+        public required string RoleName { get; set; }
     }
 }

@@ -6,39 +6,30 @@ namespace TechNews.Models
     public class Post
     {
         [Key]
-        public int PostId { get; set; }
+        public required int PostId { get; set; }
 
-        [Required]
-        public string Title { get; set; }
+        public required string Title { get; set; }
 
-        [Required]
-        public string Summary { get; set; }
+        public required string Summary { get; set; }
 
-        [Required]
-        public string Content { get; set; }
+        public required string Content { get; set; }
 
-        [Required]
-        public string Image { get; set; }
+        public required string Image { get; set; }
 
-        [Required]
-        public bool IsActive { get; set; }
+        public required bool IsActive { get; set; }
 
-        [Required]
-        public DateTime CreatedDate { get; set; }
+        public required DateTime CreatedDate { get; set; }
 
-        [Required]
-        public int View { get; set; }
+        public required int View { get; set; }
 
-        [Required]
-        public string AuthorId { get; set; }
+        public required string AuthorId { get; set; }
 
-        [Required]
-        public int MenuId { get; set; }
+        public required int MenuId { get; set; }
 
         [ForeignKey("AuthorId")]
-        public virtual Account Author { get; set; }
+        public virtual Account? Author { get; set; }
 
         [ForeignKey("MenuId")]
-        public virtual Menu Menu { get; set; }
+        public virtual Menu? Menu { get; set; }
     }
 }

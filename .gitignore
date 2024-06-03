@@ -277,3 +277,4 @@ __pycache__/
 [Dd]ist/
 [Mm]igrations/*
 ![Mm]igrations/DataContextModelSnapshot.cs
+wwwroot/uploads/.tmb
