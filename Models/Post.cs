@@ -16,8 +16,6 @@ namespace TechNews.Models
 
         public required string Image { get; set; }
 
-        public required bool IsActive { get; set; }
-
         public required DateTime CreatedDate { get; set; }
 
         public required int View { get; set; }
@@ -25,6 +23,8 @@ namespace TechNews.Models
         public required string AuthorId { get; set; }
 
         public required int MenuId { get; set; }
+
+        public required bool IsActive { get; set; }
 
         [ForeignKey("AuthorId")]
         public virtual Account? Author { get; set; }

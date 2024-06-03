@@ -1,70 +1,93 @@
-@model TechNews.Models.Menu
-
+@model TechNews.Models.Menu;
 @{
-    Layout="~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <main id="main" class="main">
+
     <div class="pagetitle">
-        <h2>Add a menu item</h2>
+        <a class="btn btn-1g btn-warning" href="javascript:history.back()">
+            <i class="bi bi-arrow-left-circle"></i> Quay lại
+        </a>
     </div>
-    <div class="container shadow p-5">
-        <form method="Post" asp-action="Create">
-            <div class="form-row">
-                <div class="form-group col-md-6 mb-3">
-                    <label>Menu name</label>
-                    <input type="text" class="form-control" asp-for="MenuName" placeholder="Menu name ... ">
-                    <span asp-validation-for="MenuName" class="alert-danger"></span>
-                </div>
-                <div class="form-group col-md-6 mb-3">
-                    <label>Level</label>
-                    <select asp-for="Level" class="form-select" id="Level">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6 mb-3">
-                    <label>ParentID</label>
-                    <select asp-for="ParentId" class="form-control"
-                        asp-items="@(new SelectList(ViewBag.mnList, "Value", "Text"))">
-                    </select>
-                </div>
 
-                <div class="form-group col-md-6 mb-3">
-                    <label>Link</label>
-                    <input type="text" class="form-control" asp-for="Link" placeholder="Enter the link ... ">
+    <section class="section">
+        <div class="row">
+            <div class="col">
 
-                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Tạo danh mục</h5>
 
-                <div class="form-group col-md-6 mb-3">
-                    <label>Menu order</label>
-                    <input type="text" class="form-control" asp-for="MenuOrder" value="0"
-                        placeholder="Enter the order of item ... ">
+                        <!-- General Form Elements -->
+                        <form asp-controller="Menu" asp-action="Create">
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Tên danh mục</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="MenuName" class="form-control" />
+                                    <span asp-validation-for="MenuName" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
 
-                </div>
-                <div class="form-group col-md-6 mb-3">
-                    <label>Position</label>
-                    <input type="text" class="form-control" asp-for="Area" value="1"
-                        placeholder="Enter the position ... ">
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Cấp</label>
+                                <div class="col-sm-10">
+                                    <select asp-for="MenuId" class="form-select">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Liên kết</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Link" class="form-control" />
+                                    <span asp-validation-for="Link" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
 
-                <div class="form-group col-md-6 mb-3">
-                    <label>
-                        @Html.CheckBox("IsActive", false)
-                        Visible
-                    </label>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Danh mục cha</label>
+                                <div class="col-sm-10">
+                                    <select asp-for="ParentId" class="form-select"
+                                        asp-items="@(new SelectList(ViewBag.menuList, "Value", "Text"))" id="ParentId">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Thứ tự</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="MenuOrder" class="form-control" />
+                                    <span asp-validation-for="MenuOrder" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label pt-0">Hiển thị</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check form-switch">
+                                        <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                                        <label class="form-check-label">Ẩn | Hiện</label>
+                                        <span asp-validation-for="IsActive" class="text-danger mb-4"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Thao tác</label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-floppy"></i>Lưu</button>
+                                </div>
+                            </div>
+
+                        </form><!-- End General Form Elements -->
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <a asp-controller="Menu" asp-action="Index" class="btn btn-lg btn-warning p-2">
-                <i class="bi bi-arrow-left-circle"></i>
-                Go back
-            </a>
-
-            <button type="submit" class="btn btn-1g btn-primary p-2">
-                <i class="bi bi-file-plus-fill"></i> Save information
-            </button>
-    </form>
-    </div>
-</main>
+</main><!-- End #main -->

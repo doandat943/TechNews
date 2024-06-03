@@ -41,18 +41,18 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            var mnList = ( from m in _context.Menu 
+            var menuList = ( from m in _context.Menu 
                            select new SelectListItem()
                            { 
-                            Text = (m.Level == 1)? m.MenuName :"--"+ m.MenuName,
+                            Text = (m.Level == 1)? m.MenuName :"-- "+ m.MenuName,
                             Value = m.MenuId.ToString()
                            }) .ToList();
-            mnList.Insert (0, new SelectListItem()
+            menuList.Insert (0, new SelectListItem()
             {
-                Text = "--select--",
+                Text = "-- Chọn --",
                 Value = "0"
             });
-            ViewBag.mnList = mnList;
+            ViewBag.menuList = menuList;
             return View();                 
         }
 
@@ -75,18 +75,19 @@ namespace TechNews.Areas.Admin.Controllers
             var mn = _context.Menu.Find(id);
             if ( mn == null)
                return NotFound();
-            var mnList = ( from m in _context.Menu
+
+            var menuList = (from m in _context.Menu
                            select new SelectListItem()
                            {
-                            Text = (m.Level == 1)? m.MenuName :"--"+ m.MenuName,
+                            Text = (m.Level == 1)? m.MenuName : "--"+ m.MenuName,
                             Value = m.MenuId.ToString()
                            }).ToList();
-            mnList.Insert(0, new SelectListItem()
+            menuList.Insert(0, new SelectListItem()
             {
                 Text= "--select--",
                 Value ="0"
             });
-            ViewBag.mnList = mnList;
+            ViewBag.menuList = menuList;
             return View(mn);   
         }
         

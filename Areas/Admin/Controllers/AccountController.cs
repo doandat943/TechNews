@@ -31,19 +31,32 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            var mnList = (from m in _context.Menu
-                          where m.Level == 2
+            var genderList = (from m in _context.Gender
                           select new SelectListItem()
                           {
-                              Text = m.MenuName,
-                              Value = m.MenuId.ToString()
+                              Text = m.GenderName,
+                              Value = m.GenderId.ToString()
                           }).ToList();
-            mnList.Insert(0, new SelectListItem()
+            genderList.Insert(0, new SelectListItem()
             {
                 Text = "--- Chọn ---",
                 Value = string.Empty
             });
-            ViewBag.mnList = mnList;
+
+            var roleList = (from m in _context.Role
+                          select new SelectListItem()
+                          {
+                              Text = m.RoleName,
+                              Value = m.RoleId.ToString()
+                          }).ToList();
+            roleList.Insert(0, new SelectListItem()
+            {
+                Text = "--- Chọn ---",
+                Value = string.Empty
+            });
+
+            ViewBag.genderList = genderList;
+            ViewBag.roleList = roleList;
             return View();
         }
 
@@ -91,32 +104,32 @@ namespace TechNews.Areas.Admin.Controllers
             if (mn == null)
                 return NotFound();
 
-            var mnRole = (from m in _context.Role
-                          select new SelectListItem()
-                          {
-                              Text = m.RoleName,
-                              Value = m.RoleId.ToString()
-                          }).ToList();
-            mnRole.Insert(0, new SelectListItem()
-            {
-                Text = "--- Select ---",
-                Value = string.Empty
-            });
-
-            var mnGender = (from m in _context.Gender
+            var genderList = (from m in _context.Gender
                           select new SelectListItem()
                           {
                               Text = m.GenderName,
                               Value = m.GenderId.ToString()
                           }).ToList();
-            mnGender.Insert(0, new SelectListItem()
+            genderList.Insert(0, new SelectListItem()
             {
                 Text = "--- Select ---",
                 Value = string.Empty
             });
 
-            ViewBag.mnRole = mnRole;
-            ViewBag.mnGender = mnGender;
+            var roleList = (from m in _context.Role
+                          select new SelectListItem()
+                          {
+                              Text = m.RoleName,
+                              Value = m.RoleId.ToString()
+                          }).ToList();
+            roleList.Insert(0, new SelectListItem()
+            {
+                Text = "--- Select ---",
+                Value = string.Empty
+            });
+
+            ViewBag.genderList = genderList;
+            ViewBag.roleList = roleList;
             return View(mn);
         }
 

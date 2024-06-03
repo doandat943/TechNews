@@ -16,7 +16,7 @@ namespace TechNews.Components
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var menuList = (from m in _context.Menu
-                          where (m.IsActive == true) && (m.Area == 1)
+                          where (m.IsActive == true)
                           select m).ToList();
             return await Task.FromResult((IViewComponentResult)View("Default", menuList));
         }

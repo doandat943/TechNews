@@ -9,8 +9,6 @@ namespace TechNews.Models
 
         public required string MenuName { get; set; }
 
-        public required bool IsActive { get; set; }
-
         public required string ControllerName { get; set; }
 
         public required string ActionName { get; set; }
@@ -24,5 +22,7 @@ namespace TechNews.Models
         public required string Target { get; set; }
 
         public required string Icon { get; set; }
+
+        public required bool IsActive { get; set; }
     }
 }

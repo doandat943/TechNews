@@ -27,19 +27,19 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            var mnList = (from m in _context.Menu
-                          where m.Level == 2
-                          select new SelectListItem()
-                          {
-                              Text = m.MenuName,
-                              Value = m.MenuId.ToString()
-                          }).ToList();
-            mnList.Insert(0, new SelectListItem()
+            var menuList = (from m in _context.Menu
+                            where m.Level == 2
+                            select new SelectListItem()
+                            {
+                                Text = m.MenuName,
+                                Value = m.MenuId.ToString()
+                            }).ToList();
+            menuList.Insert(0, new SelectListItem()
             {
                 Text = "--- Chọn ---",
                 Value = string.Empty
             });
-            ViewBag.mnList = mnList;
+            ViewBag.menuList = menuList;
             return View();
         }
 
@@ -48,35 +48,12 @@ namespace TechNews.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                post.CreatedDate = DateTime.Now;
                 _context.Post.Add(post);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(post);
-        }
-
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var mn = _context.Post.Find(id);
-            if (mn == null)
-            {
-                return NotFound();
-            }
-            return View(mn);
-        }
-        
-        [HttpPost]
-        public IActionResult Delete(int id)
-        {
-            var delPost = _context.Post.Find(id);
-            if (delPost == null) return NotFound();
-            _context.Post.Remove(delPost);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         public IActionResult Edit(int? id)
@@ -86,19 +63,20 @@ namespace TechNews.Areas.Admin.Controllers
             var mn = _context.Post.Find(id);
             if (mn == null)
                 return NotFound();
-            var mnList = (from m in _context.Menu
-                          where m.Level == 2
-                          select new SelectListItem()
-                          {
-                              Text = m.MenuName,
-                              Value = m.MenuId.ToString()
-                          }).ToList();
-            mnList.Insert(0, new SelectListItem()
+
+            var menuList = (from m in _context.Menu
+                            where m.Level == 2
+                            select new SelectListItem()
+                            {
+                                Text = m.MenuName,
+                                Value = m.MenuId.ToString()
+                            }).ToList();
+            menuList.Insert(0, new SelectListItem()
             {
-                Text = "--- Select ---",
+                Text = "--- Chọn ---",
                 Value = string.Empty
             });
-            ViewBag.mnList = mnList;
+            ViewBag.menuList = menuList;
             return View(mn);
         }
 
@@ -115,6 +93,28 @@ namespace TechNews.Areas.Admin.Controllers
             return View(mn);
         }
 
-    }
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var mn = _context.Post.Find(id);
+            if (mn == null)
+            {
+                return NotFound();
+            }
+            return View(mn);
+        }
 
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var delPost = _context.Post.Find(id);
+            if (delPost == null) return NotFound();
+            _context.Post.Remove(delPost);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
 }
