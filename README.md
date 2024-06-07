@@ -32,21 +32,30 @@ To get started with the TechNews project, follow the instructions below in this 
 
 ## How To Run
 
-### 1. Go to the project folder
+### 1. Navigate to the Project Folder
 
 ```sh
 cd path/to/your/project
 ```
 
-### 2. Set database environment
+### 2. Set Database Environment Variables
 
-#### On Windows:
+#### On Windows (Command Prompt):
 
 ```sh
 set DBHOST=your_database_host
 set DBPORT=your_database_port
 set DBUSERID=your_database_userid
 set DBPASSWORD=your_database_password
+```
+
+#### On Windows (PowerShell):
+
+```sh
+$env:DBHOST="your_database_host"
+$env:DBPORT="your_database_port"
+$env:DBUSERID="your_database_userid"
+$env:DBPASSWORD="your_database_password"
 ```
 
 #### On Linux/macOS:
@@ -58,28 +67,28 @@ export DBUSERID=your_database_userid
 export DBPASSWORD=your_database_password
 ```
 
-### 3. Migrate database structure
+### 3. Create Initial Database Schema Migration
 
 ```sh
 dotnet ef migrations add InitialCreate
 ```
 
-### 4. Update database structure
+### 4. Apply Database Migrations
 
 ```sh
 dotnet ef database update
 ```
 
-### 5. Run the application
+### 5. Run the Application
 
 ```sh
-dotnet run
+dotnet watch run
 ```
 
-## Build and run with Docker
+## Build and Run with Docker
 
 ```
-dotnet publish /p:PublishProfile=DefaultContainer
+dotnet publish /p:PublishProfile=DefaultContainer /p:ContainerRepository=doandat943/technews
 docker-compose up
 ```
 
