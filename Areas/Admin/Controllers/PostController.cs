@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PagedList.Core;
 using TechNews.Models;
+using TechNews.Ultilities;
 
 namespace TechNews.Areas.Admin.Controllers
 {
@@ -18,7 +19,13 @@ namespace TechNews.Areas.Admin.Controllers
         [Route("/Admin/Post/Index", Name = "PostIndex")]
         public IActionResult Index(int page = 1)
         {
-            var post = _context.Post.OrderByDescending(p => p.PostId);
+
+            IQueryable<Post> post = _context.Post;
+            if (Functions._AccountRole == 2)
+            {
+                post = post.Where(p => p.AuthorId == Functions._AccountId);
+            }
+            post = post.OrderByDescending(p => p.PostId);
             int pageSize = 10;
             PagedList<Post> models = new PagedList<Post>(post, page, pageSize);
             if (models == null) return NotFound();
