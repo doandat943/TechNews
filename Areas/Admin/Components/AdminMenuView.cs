@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TechNews.Models;
+using TechNews.Ultilities;
 
 namespace TechNews.Areas.Admin.Components
 {
@@ -16,6 +17,7 @@ namespace TechNews.Areas.Admin.Components
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var mnList = (from m in _context.AdminMenu
+                          where m.RoleId <= Functions._AccountRole
                           select m).ToList();
             return await Task.FromResult((IViewComponentResult)View("Default", mnList));
         }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TechNews.Models
 {
@@ -8,6 +9,8 @@ namespace TechNews.Models
         public required int MenuId { get; set; }
 
         public required string MenuName { get; set; }
+
+        public required int RoleId { get; set; }
 
         public required string ControllerName { get; set; }
 
@@ -24,5 +27,8 @@ namespace TechNews.Models
         public required string Icon { get; set; }
 
         public required bool IsActive { get; set; }
+
+        [ForeignKey("RoleId")]
+        public virtual Role? Role { get; set; }
     }
 }

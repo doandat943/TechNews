@@ -9,6 +9,7 @@ namespace TechNews.Ultilities
         public static string? _AccountId = String.Empty;
         public static string? _AccountName = String.Empty;
         public static string? _AccountType = String.Empty;
+        public static int? _AccountRole;
         public static string? _Message = String.Empty;
 
         public static string CalculateMD5Hash(string input)

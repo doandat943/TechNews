@@ -12,10 +12,12 @@ namespace TechNews.Areas.Admin.Controllers
     public class LoginController : Controller
     {
         private readonly DataContext _context;
+
         public LoginController(DataContext context)
         {
             _context = context;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -46,6 +48,7 @@ namespace TechNews.Areas.Admin.Controllers
             Functions._AccountId = check.AccountId;
             Functions._AccountName = string.IsNullOrEmpty(check.Name) ? string.Empty : check.Name;
             Functions._AccountType = roleName;
+            Functions._AccountRole = check.RoleId;
             return RedirectToAction("Index", "Home");
         }
     }
