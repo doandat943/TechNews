@@ -6,7 +6,9 @@ namespace TechNews.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    
     private readonly DataContext _context;
+
     public HomeController(ILogger<HomeController> logger, DataContext context)
     {
         _logger = logger;
@@ -17,7 +19,7 @@ public class HomeController : Controller
     {
         var postList = (from post in _context.Post
                         join menu in _context.Menu on post.MenuId equals menu.MenuId
-                        //where (m.IsActive == true)
+                        where (menu.IsActive)
                         select new
                         {
                             Post = post,

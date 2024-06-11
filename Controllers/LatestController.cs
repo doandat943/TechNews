@@ -3,31 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TechNews.Models;
 
 namespace TechNews.Controllers
 {
-    public class CategoryController : Controller
+    public class LatestController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
         private readonly DataContext _context;
-
-        public CategoryController(ILogger<HomeController> logger, DataContext context)
+        
+        public LatestController(ILogger<HomeController> logger, DataContext context)
         {
             _logger = logger;
             _context = context;
         }
 
-        [Route("/category/{id:int}")]
-        public IActionResult Index(int? id)
+        [Route("/latest")]
+        public IActionResult Index()
         {
-            if (id == null) return NotFound();
-
             var posts = (from post in _context.Post
                          join comment in _context.Comment on post.PostId equals comment.PostId into postComments
                          join menu in _context.Menu on post.MenuId equals menu.MenuId
-                         where post.MenuId == id && post.IsActive
+                         where post.IsActive
                          select new
                          {
                              post.PostId,
@@ -43,13 +42,7 @@ namespace TechNews.Controllers
 
             ViewBag.Post = posts;
 
-            var query = from menu in _context.Menu
-                        where menu.MenuId == id && menu.IsActive
-                        select menu;
-
-            var menus = query.ToList();
-
-            return View(menus);
+            return View();
         }
     }
 }
