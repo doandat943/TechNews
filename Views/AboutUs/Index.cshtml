@@ -1,0 +1,47 @@
+@using TechNews.Models
+@using TechNews.Ultilities
+
+<!-- Breaking News Start -->
+<div class="container-fluid mt-5 mb-3 pt-3">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <div class="d-flex justify-content-between">
+                    <div class="section-title border-right-0 mb-0" style="width: 300px;">
+                        <h4 class="m-0 text-uppercase font-weight-bold">Về chúng tôi</h4>
+                    </div>
+                    <div class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center bg-white border border-left-0" style="width: calc(100% - 180px); padding-right: 200px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breaking News End -->
+
+<!-- News With Sidebar Start -->
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <!-- News Detail Start -->
+                <div class="position-relative mb-3">
+
+                    <img class="img-fluid w-100" src="@Model.Image" style="object-fit: cover;">
+                    <div class="bg-white border border-top-0 p-4">
+                        <p>@Html.Raw(Model.Content)</p>
+                    </div>
+
+                    <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle mr-2" src="@Model.AdminAvatar" width="25" height="25" alt="">
+                            <span>@Model.AdminName</span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- News Detail End -->
+            </div>
+        </div>
+    </div>
+    <!-- News With Sidebar End -->

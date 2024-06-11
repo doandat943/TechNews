@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TechNews.Models;
 
 namespace TechNews.Controllers
 {
-    public class LatestController : Controller
+    public class TrendingController : Controller
     {
-        private readonly ILogger<LatestController> _logger;
+        private readonly ILogger<TrendingController> _logger;
 
         private readonly DataContext _context;
         
-        public LatestController(ILogger<LatestController> logger, DataContext context)
+        public TrendingController(ILogger<TrendingController> logger, DataContext context)
         {
             _logger = logger;
             _context = context;
         }
 
-        [Route("/latest")]
+        [Route("/trending")]
         public IActionResult Index()
         {
             var posts = (from post in _context.Post
@@ -38,7 +37,7 @@ namespace TechNews.Controllers
                              post.View,
                              menu.MenuName,
                              CommentCount = postComments.Count()
-                         }).OrderByDescending(p => p.CreatedDate).ToList();
+                         }).OrderByDescending(p => p.View).ToList();
 
             ViewBag.Post = posts;
 

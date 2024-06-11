@@ -9,11 +9,11 @@ namespace TechNews.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CategoryController> _logger;
 
         private readonly DataContext _context;
 
-        public CategoryController(ILogger<HomeController> logger, DataContext context)
+        public CategoryController(ILogger<CategoryController> logger, DataContext context)
         {
             _logger = logger;
             _context = context;

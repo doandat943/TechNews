@@ -11,11 +11,11 @@ namespace TechNews.Controllers
 {
     public class PostController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<PostController> _logger;
 
         private readonly DataContext _context;
 
-        public PostController(ILogger<HomeController> logger, DataContext context)
+        public PostController(ILogger<PostController> logger, DataContext context)
         {
             _logger = logger;
             _context = context;

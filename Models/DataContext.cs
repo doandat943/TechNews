@@ -19,5 +19,7 @@ namespace TechNews.Models
         public DbSet<Comment> Comment { get; set; }
 
         public DbSet<AdminMenu> AdminMenu { get; set; }
+
+        public DbSet<AboutUs> AboutUs { get; set; }
     }
 }
