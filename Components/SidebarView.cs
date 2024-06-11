@@ -23,6 +23,10 @@ namespace TechNews.Components
                                 Post = post,
                                 Menu = menu
                             }).ToList();
+
+            var aboutUs = _context.AboutUs.FirstOrDefault();
+            ViewBag.AboutUs = aboutUs;
+            
             return await Task.FromResult((IViewComponentResult)View("Default", postList));
         }
     }

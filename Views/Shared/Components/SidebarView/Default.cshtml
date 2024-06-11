@@ -1,6 +1,10 @@
 @model IEnumerable<dynamic>
 @using TechNews.Ultilities
 
+@{
+    var aboutUs = ViewBag.AboutUs;
+}
+
 <div class="col-lg-4">
 
     <!-- Ads Start -->
@@ -46,32 +50,28 @@
             <h4 class="m-0 text-uppercase font-weight-bold">Theo dõi</h4>
         </div>
         <div class="bg-white border border-top-0 p-3">
-            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #39569E;">
+            <a href="@aboutUs.Twitter" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #52AAF4;">
+                <i class="fab fa-twitter text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                <span class="font-weight-medium">1234 Followers</span>
+            </a>
+            <a href="@aboutUs.Facebook" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #39569E;">
                 <i class="fab fa-facebook-f text-center py-4 mr-3"
                     style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Fans</span>
+                <span class="font-weight-medium">1234 Fans</span>
             </a>
-            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #52AAF4;">
-                <i class="fab fa-twitter text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Followers</span>
-            </a>
-            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #0185AE;">
+            <a href="@aboutUs.Linkedin" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #0185AE;">
                 <i class="fab fa-linkedin-in text-center py-4 mr-3"
                     style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Connects</span>
+                <span class="font-weight-medium">1234 Connects</span>
             </a>
-            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #C8359D;">
+            <a href="@aboutUs.Instagram" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #C8359D;">
                 <i class="fab fa-instagram text-center py-4 mr-3"
                     style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Followers</span>
+                <span class="font-weight-medium">1234 Followers</span>
             </a>
-            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #DC472E;">
+            <a href="@aboutUs.Youtube" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #DC472E;">
                 <i class="fab fa-youtube text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Subscribers</span>
-            </a>
-            <a href="" class="d-block w-100 text-white text-decoration-none" style="background: #055570;">
-                <i class="fab fa-vimeo-v text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
-                <span class="font-weight-medium">12,345 Followers</span>
+                <span class="font-weight-medium">1234 Subscribers</span>
             </a>
         </div>
     </div>

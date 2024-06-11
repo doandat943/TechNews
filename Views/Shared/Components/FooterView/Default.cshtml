@@ -1,26 +1,31 @@
 @model IEnumerable<dynamic>
 @using TechNews.Ultilities
 
+@{
+    var aboutUs = ViewBag.AboutUs;
+}
+
 <!-- Footer Start -->
 <div class="container-fluid bg-dark pt-5 px-sm-3 px-md-5 mt-5">
     <div class="row py-4">
         <div class="col-lg-3 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Liên hệ</h5>
-            <p class="font-weight-medium"><i class="fa fa-map-marker-alt mr-2"></i>Nghi Long, Nghi Lộc, Nghệ An</p>
-            <p class="font-weight-medium"><i class="fa fa-phone-alt mr-2"></i>+84 345785422</p>
-            <p class="font-weight-medium"><i class="fa fa-envelope mr-2"></i>doandat943@joverse.us</p>
+            <p class="font-weight-medium"><i class="fa fa-map-marker-alt mr-2"></i>@aboutUs.Address</p>
+            <p class="font-weight-medium"><i class="fa fa-user mr-2"></i>@aboutUs.AdminName</p>
+            <p class="font-weight-medium"><i class="fa fa-phone-alt mr-2"></i>@aboutUs.Number</p>
+            <p class="font-weight-medium"><i class="fa fa-envelope mr-2"></i>@aboutUs.Email</p>
             <h6 class="mt-4 mb-3 text-white text-uppercase font-weight-bold">Theo dõi</h6>
             <div class="d-flex justify-content-start">
-                <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="#"><i class="fab fa-instagram"></i></a>
-                <a class="btn btn-lg btn-secondary btn-lg-square" href="#"><i class="fab fa-youtube"></i></a>
+                <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="@aboutUs.Twitter"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="@aboutUs.Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="@aboutUs.Linkedin"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-lg btn-secondary btn-lg-square mr-2" href="@aboutUs.Instagram"><i class="fab fa-instagram"></i></a>
+                <a class="btn btn-lg btn-secondary btn-lg-square" href="@aboutUs.Youtube"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
-            <h5 class="mb-4 text-white text-uppercase font-weight-bold">Popular News</h5>
-            @foreach (var item in Model.Take(3))
+            <h5 class="mb-4 text-white text-uppercase font-weight-bold">Tin mới nhất</h5>
+            @foreach (var item in Model)
             {
                 <div class="mb-3">
                     <div class="mb-2">
