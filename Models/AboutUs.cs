@@ -13,8 +13,6 @@ namespace TechNews.Models
 
         public required string WebName { get; set; }
 
-        public required string WebLink { get; set; }
-
         public required string Image { get; set; }
 
         public required string Content { get; set; }

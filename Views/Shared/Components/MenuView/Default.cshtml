@@ -22,7 +22,8 @@
                     var sMenu = Model.Where(s => s.ParentId == mId).OrderBy(s => s.MenuOrder).ToList();
                     if (sMenu.Count == 0)
                     {
-                        <a href="@menu.Link" class="nav-item nav-link @(currentUrl == menu.Link ? "active" : "")">@menu.MenuName</a>
+                        <a href="@menu.Link"
+                            class="nav-item nav-link @(currentUrl == menu.Link ? "active" : "")">@menu.MenuName</a>
                     }
                     else
                     {
@@ -31,20 +32,23 @@
                             <div class="dropdown-menu rounded-0 m-0">
                                 @foreach (var smn in sMenu)
                                 {
-                                    <a href="/category/@smn.MenuId" class="dropdown-item @(currentUrl == menu.Link+"/"+smn.MenuId ? "active" : "")">@smn.MenuName</a>
+                                    <a href="/category/@smn.MenuId"
+                                        class="dropdown-item @(currentUrl == menu.Link+"/"+smn.MenuId ? "active" : "")">@smn.MenuName</a>
                                 }
                             </div>
                         </div>
                     }
                 }
             </div>
-            <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
-                <input type="text" class="form-control border-0" placeholder="Từ khóa">
-                <div class="input-group-append">
-                    <button class="input-group-text bg-primary text-dark border-0 px-3"><i
-                            class="fa fa-search"></i></button>
+            <form method="get" action="/search">
+                <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+                    <input type="text" class="form-control border-0" placeholder="Từ khóa" name="keyword">
+                    <div class="input-group-append">
+                        <button class="input-group-text bg-primary text-dark border-0 px-3" type="submit"><i
+                                class="fa fa-search"></i></button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </nav>
 </div>

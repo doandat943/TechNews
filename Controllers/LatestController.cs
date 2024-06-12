@@ -26,6 +26,7 @@ namespace TechNews.Controllers
             var posts = (from post in _context.Post
                          join comment in _context.Comment on post.PostId equals comment.PostId into postComments
                          join menu in _context.Menu on post.MenuId equals menu.MenuId
+                         join account in _context.Account on post.AuthorId equals account.AccountId
                          where post.IsActive
                          select new
                          {
@@ -36,8 +37,11 @@ namespace TechNews.Controllers
                              post.CreatedDate,
                              post.AuthorId,
                              post.View,
+                             post.MenuId,
                              menu.MenuName,
-                             CommentCount = postComments.Count()
+                             CommentCount = postComments.Count(),
+                             AuthorName = account.Name,
+                             AuthorAvatar = account.Avatar
                          }).OrderByDescending(p => p.CreatedDate).ToList();
 
             ViewBag.Post = posts;

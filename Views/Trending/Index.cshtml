@@ -10,7 +10,7 @@
                     <div class="col-12">
                         <div class="section-title">
                             <h4 class="m-0 text-uppercase font-weight-bold">Tin mới nhất</h4>
-                            <a class="text-secondary font-weight-medium text-decoration-none" href="">View All</a>
+                            <a class="text-secondary font-weight-medium text-decoration-none" href="">Xem tất cả</a>
                         </div>
                     </div>
                     @foreach (var post in ViewBag.Post)
@@ -31,8 +31,8 @@
                                 </div>
                                 <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                                     <div class="d-flex align-items-center">
-                                        <img class="rounded-circle mr-2" src="img/user.jpg" width="25" height="25" alt="">
-                                        <small>@post.AuthorId</small>
+                                        <img class="rounded-circle mr-2" src="@post.AuthorAvatar" width="25" height="25" alt="">
+                                        <small>@post.AuthorName</small>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <small class="ml-3"><i class="far fa-eye mr-2"></i>@post.View</small>

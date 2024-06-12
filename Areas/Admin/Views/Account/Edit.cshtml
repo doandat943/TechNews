@@ -17,7 +17,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Tạo tài khoản</h5>
+                        <h5 class="card-title">Chỉnh sửa tài khoản</h5>
 
                         <!-- General Form Elements -->
                         <form asp-controller="Account" asp-action="Edit">
@@ -83,6 +83,8 @@
                                     <input asp-for="Avatar" class="form-control" id="file_input">
                                 </div>
                             </div>
+
+                            <input asp-for="AccountId" class="form-control" hidden />
 
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Thao tác</label>

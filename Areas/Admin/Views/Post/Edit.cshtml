@@ -17,7 +17,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Tạo bài viết</h5>
+                        <h5 class="card-title">Chỉnh sửa bài viết</h5>
 
                         <!-- General Form Elements -->
                         <form asp-controller="Post" asp-action="Edit">
@@ -93,6 +93,8 @@
                                     <input asp-for="AuthorId" type="hidden" />
                                 </div>
                             </div>
+
+                            <input asp-for="PostId" class="form-control" hidden />
 
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Thao tác</label>
