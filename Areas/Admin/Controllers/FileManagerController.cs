@@ -2,6 +2,7 @@ using elFinder.NetCore;
 using elFinder.NetCore.Drivers.FileSystem;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using TechNews.Ultilities;
 
 namespace TechNews.Areas.Admin.Controllers
 {
@@ -10,6 +11,10 @@ namespace TechNews.Areas.Admin.Controllers
     {
         public IActionResult Index()
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             return View();
         }
 

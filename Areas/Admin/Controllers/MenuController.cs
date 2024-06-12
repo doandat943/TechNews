@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using PagedList.Core;
 using TechNews.Models;
+using TechNews.Ultilities;
 
 namespace TechNews.Areas.Admin.Controllers
 {
@@ -13,13 +15,24 @@ namespace TechNews.Areas.Admin.Controllers
             _context = context;
         }
 
-        public IActionResult Index(){
-            var mnList = _context.Menu.OrderBy(m => m.MenuId).ToList();
-            return View(mnList);
+        public IActionResult Index(int page = 1){
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            IQueryable<Menu> post = _context.Menu;
+            int pageSize = 10;
+            PagedList<Menu> models = new PagedList<Menu>(post, page, pageSize);
+            if (models == null) return NotFound();
+            return View(models);
         }
 
         public IActionResult Delete (int? id)
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null || id ==0)
                return NotFound();
             var mn = _context.Menu.Find(id);
@@ -41,6 +54,10 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var menuList = ( from m in _context.Menu 
                            select new SelectListItem()
                            { 
@@ -70,6 +87,10 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Edit(int? id)
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null|| id ==0)
                return NotFound();
             var mn = _context.Menu.Find(id);

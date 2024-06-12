@@ -1,34 +1,55 @@
 @model TechNews.Models.Menu;
-
 @{
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <main id="main" class="main">
+
     <div class="pagetitle">
-        <h2>Confirm to delete a menu</h2>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label asp-for="MenuId">MenuID</label>
-            <input type="text" class="form-control mb-3" asp-for="MenuId" disabled />
-        </div>
-        <div class="form-group col-md-6">
-            <label asp-for="MenuName">MenuName</label>
-            <input type="text" class="form-control mb-3" asp-for="MenuName" disabled />
-        </div>
-    </div>
-
-    <form asp-action="Delete" method="Post">
-        <input type="hidden" asp-for="MenuId" />
-
-        <a class="btn btn-lg btn-warning p-2 mr-5" href="javascript:history.back()">
-            <i class="bi bi-arrow-left-circle"></i> Go Back
+        <a class="btn btn-1g btn-warning" href="javascript:history.back()">
+            <i class="bi bi-arrow-left-circle"></i> Quay lại
         </a>
+    </div>
 
-        <button type="submit" class="btn btn-lg btn-danger p-2">
-            <i class="bi bi-trash"></i> Delete
-        </button>
-    </form>
-</main>
+    <section class="section">
+        <div class="row">
+            <div class="col">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Xác nhận xóa?</h5>
+
+                        <!-- General Form Elements -->
+                        <form asp-controller="Menu" asp-action="Delete">
+                            <div class="row mb-3">
+                                <label for="inputMenuName" class="col-sm-2 col-form-label">Tên danh mục</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="MenuId" class="form-control" disabled/>
+                                    <span asp-validation-for="MenuId" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputMenuName" class="col-sm-2 col-form-label">Tên danh mục</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="MenuName" class="form-control" disabled/>
+                                    <span asp-validation-for="MenuName" class="text-danger mb-4"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Thao tác</label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> Xóa</button>
+                                </div>
+                            </div>
+
+                        </form><!-- End General Form Elements -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->

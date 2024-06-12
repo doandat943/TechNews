@@ -1,5 +1,5 @@
-@using TechNews.Models;
-@using PagedList.Core.Mvc;
+@using TechNews.Models
+@using PagedList.Core.Mvc
 @using TechNews.Ultilities
 @model PagedList.Core.IPagedList<Account>
 
@@ -9,61 +9,67 @@
 
 <main id="main" clasa="main">
     <div class="pagetitle">
-        <h2>Quản lý bài viết</h2>
-        <div class="row">
-            <div class="col-4">
-                <a type="button" class="btn btn-success" asp-area="Admin" asp-controller="Account" asp-action="Create">
-            <i class="bi bi-file-earmark-text me-1"></i>Tao tai khoan</a>
-            </div>
-            <div class="col-8">
-                <div>
-                    <ul class="pagination float-end">
-                        <pager class="pager-container" options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly" list="@Model"></pager>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <section class="section dashboard">
             <div class="row">
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
-                        <div class="card-body mt-4">
+                        <div class="card-body">
+                            <h1 class="card-title">Quản lý tài khoản</h1>
+                            <div class="row">
+                                <div class="col-4">
+                                    <a type="button" class="btn btn-success" asp-area="Admin" asp-controller="Account"
+                                        asp-action="Create">
+                                        <i class="bi bi-file-earmark-text me-1"></i>Thêm tài khoản</a>
+                                </div>
+                                <div class="col-8">
+                                    <div>
+                                        <ul class="pagination float-end">
+                                            <pager class="pager-container"
+                                                options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly"
+                                                list="@Model"></pager>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                             <table class="table table-borderless datatable">
                                 <thead>
                                     <tr>
-                                        <th class="col-1 text-center">Username</th>
-                                        <th class="col-3 text-center">Name</th>
-                                        <th class="col-2 text-center">Email</th>
-                                        <th class="col-2 text-center">GenderId</th>
-                                        <th class="col-1 text-center">RoleId</th>
+                                        <th scope="col">AccountId</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Functions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        @foreach (var item in Model)
-                                        {
+                                    @foreach (var item in Model)
+                                    {
                                         <tr>
-                                            <td class="text-center" scope="row">@item.AccountId</td>
-                                            <td class="text-center" scope="row">@item.Name</td>
-                                            <td class="text-center" scope="row">@item.Email</td>
-                                            <td class="text-center" scope="row">@item.GenderId</td>
-                                            <td class="text-center" scope="row">@item.RoleId</td>
+                                            <th>@item.AccountId</th>
+                                            <td>@item.Name</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.GenderId</td>
+                                            <td>@item.RoleId</td>
                                             <td class="text-center" scope="row">
                                                 <a asp-area="Admin" asp-controller="Account" asp-action="Edit"
                                                     asp-route-id="@item.AccountId" class="btn btn-primary btn-sm"
-                                                    title="Edit the post"><i class="bi bi-pencil"></i></a>
+                                                    title="Chỉnh sửa tài khoản"><i class="bi bi-pencil"></i></a>
                                                 <a asp-area="Admin" asp-controller="Account" asp-action="Delete"
                                                     asp-route-id="@item.AccountId" class="btn btn-danger btn-sm"
-                                                    title="Delete the post"><i class="bi bi-trash"></i></a>
+                                                    title="Xóa tài khoản"><i class="bi bi-trash"></i></a>
                                             </td>
                                         </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
+                                    }
+                                </tbody>
+                            </table>
+
                         </div>
+
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
         </p>
     </div>
 </main>

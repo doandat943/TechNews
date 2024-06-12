@@ -1,3 +1,4 @@
+@using TechNews.Ultilities
 @using TechNews.Models
 @model IList<AdminMenu>
 
@@ -24,6 +25,14 @@
                             <li>
                                 <a href="/Admin/@smn.ControllerName/@smn.ActionName">
                                     <i class="bi bi-circle"></i><span>@smn.MenuName</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Functions._AccountRole == 2 || Functions._AccountRole == 1)
+                        {
+                            <li>
+                                <a href="/Admin/Account/Edit/@Functions._AccountId">
+                                    <i class="bi bi-circle"></i><span>Chỉnh sửa tài khoản</span>
                                 </a>
                             </li>
                         }

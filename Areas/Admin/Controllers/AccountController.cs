@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PagedList.Core;
 using TechNews.Models;
+using TechNews.Ultilities;
 
 namespace TechNews.Areas.Admin.Controllers
 {
@@ -22,6 +23,10 @@ namespace TechNews.Areas.Admin.Controllers
         [Route("/Admin/Account/Index", Name = "AccountIndex")]
         public IActionResult Index(int page = 1)
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var post = _context.Account.OrderByDescending(p => p.AccountId);
             int pageSize = 10;
             PagedList<Account> models = new PagedList<Account>(post, page, pageSize);
@@ -31,6 +36,10 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var genderList = (from m in _context.Gender
                           select new SelectListItem()
                           {
@@ -74,6 +83,10 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Delete(string? id)
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null || id == null)
             {
                 return NotFound();
@@ -98,6 +111,10 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Edit(string? id)
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null || id == null)
                 return NotFound();
             var mn = _context.Account.Find(id);

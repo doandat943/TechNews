@@ -19,7 +19,10 @@ namespace TechNews.Areas.Admin.Controllers
         [Route("/Admin/Post/Index", Name = "PostIndex")]
         public IActionResult Index(int page = 1)
         {
-
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             IQueryable<Post> post = _context.Post;
             if (Functions._AccountRole == 2)
             {
@@ -34,6 +37,10 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var menuList = (from m in _context.Menu
                             where m.Level == 2
                             select new SelectListItem()
@@ -65,6 +72,10 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Edit(int? id)
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null || id == 0)
                 return NotFound();
             var mn = _context.Post.Find(id);
@@ -102,6 +113,10 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Delete(int? id)
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (id == null || id == 0)
             {
                 return NotFound();

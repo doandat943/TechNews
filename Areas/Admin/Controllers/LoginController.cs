@@ -20,6 +20,10 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            if (Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 

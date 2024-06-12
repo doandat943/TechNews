@@ -21,5 +21,7 @@ namespace TechNews.Models
         public DbSet<AdminMenu> AdminMenu { get; set; }
 
         public DbSet<AboutUs> AboutUs { get; set; }
+
+        public DbSet<Analyst> Analyst { get; set; }
     }
 }

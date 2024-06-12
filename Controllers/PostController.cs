@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TechNews.Models;
+using TechNews.Ultilities;
 
 namespace TechNews.Controllers
 {
@@ -58,13 +59,32 @@ namespace TechNews.Controllers
 
             if (what.Count == 0) return NotFound();
 
-            // tang view
+            // tang view post
             var postToUpdate = _context.Post.FirstOrDefault(p => p.PostId == id);
             if (postToUpdate != null)
             {
                 postToUpdate.View += 1;
                 _context.SaveChanges();
             }
+            // tang view analyst
+            DateTime currentDate = DateTime.Today;
+            var analystRecord = _context.Analyst.FirstOrDefault(a => a.Date == currentDate);
+
+            if (analystRecord == null)
+            {
+                analystRecord = new Analyst
+                {
+                    Date = currentDate,
+                    View = 1
+                };
+                _context.Analyst.Add(analystRecord);
+            }
+            else
+            {
+                analystRecord.View += 1;
+            }
+
+            _context.SaveChanges();
 
             return View(what);
         }
@@ -76,7 +96,10 @@ namespace TechNews.Controllers
             comment.CreatedDate = DateTime.Now;
             _context.Comment.Add(comment);
             _context.SaveChanges();
-            return NoContent();
+
+            var thispost = _context.Post.Find(comment.PostId);
+
+            return Redirect("/" + Functions.TitleSlugGenerate("post", thispost.Title, thispost.PostId));
         }
     }
 }

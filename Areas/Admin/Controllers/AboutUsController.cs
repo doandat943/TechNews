@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TechNews.Models;
+using TechNews.Ultilities;
 
 namespace TechNews.Areas.Admin.Controllers
 {
@@ -19,6 +20,14 @@ namespace TechNews.Areas.Admin.Controllers
 
         public IActionResult Edit()
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             int id = 1;
             var mn = _context.AboutUs.Find(id);
             if (mn == null)
@@ -29,6 +38,10 @@ namespace TechNews.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(AboutUs mn)
         {
+            if (!Functions.IsLogin())
+            {
+                return RedirectToAction("Index", "Login");
+            }
             if (ModelState.IsValid)
             {
                 _context.AboutUs.Update(mn);
