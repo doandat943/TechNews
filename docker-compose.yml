@@ -6,29 +6,29 @@ services:
   db:
     image: mariadb
     restart: always
-    volumes:
-      - datafiles:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
+    volumes:
+      - datafiles:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin
     restart: always
-    depends_on:
-      - db
     ports:
       - 3000:80
+    depends_on:
+      - db
 
   mvc:
     image: doandat943/technews
     restart: always
-    depends_on:
-      - db
+    environment:
+      DBHOST: db
+      DBPORT: 3306
+      DBUSERID: root
+      DBPASSWORD: 12345678
+      ASPNETCORE_ENVIRONMENT: Development
     ports:
       - "8080:8080"
-    environment:
-      - DBHOST=db
-      - DBPORT=3306
-      - DBUSERID=root
-      - DBPASSWORD=12345678
-      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - db

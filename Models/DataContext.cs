@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TechNews.Ultilities;
 
 namespace TechNews.Models
 {
@@ -11,7 +12,7 @@ namespace TechNews.Models
         public DbSet<Role> Role { get; set; }
 
         public DbSet<Account> Account { get; set; }
-        
+
         public DbSet<Menu> Menu { get; set; }
 
         public DbSet<Post> Post { get; set; }
@@ -23,5 +24,21 @@ namespace TechNews.Models
         public DbSet<AboutUs> AboutUs { get; set; }
 
         public DbSet<Analyst> Analyst { get; set; }
+
+        public void SeedData()
+        {
+            if (!AboutUs.Any())
+            {
+                AboutUs.AddRange(
+                    new AboutUs { Id = 1, WebName = "TechNews", AdminName = "Quản trị viên", AdminAvatar = "", Email = "admin@technews.com", Number = "0989123456", Address = "Vinh University", Content = "We are TechNews", Image = "", Facebook = "facebook.com", Instagram = "instagram.com", Linkedin = "linkedin.com", Twitter = "twitter.com", Youtube = "youtube.com" }
+                );
+
+                Account.AddRange(
+                    new Account {AccountId = "admin", Password = Functions.MD5Password("admin"), Name = "Đạt và Kính", Email = "admin@technews.com", GenderId = 1, RoleId = 3}
+                );
+
+                SaveChanges();
+            }
+        }
     }
 }
