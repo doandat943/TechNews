@@ -24,10 +24,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-    if (!dbContext.Database.EnsureCreated())
-    {
-        dbContext.Database.Migrate();
-    }
+    dbContext.Database.EnsureCreated();
     dbContext.SeedData();
 }
 

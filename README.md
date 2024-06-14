@@ -67,19 +67,7 @@ export DBUSERID=your_database_userid
 export DBPASSWORD=your_database_password
 ```
 
-### 3. Create Initial Database Schema Migration
-
-```sh
-dotnet ef migrations add InitialCreate
-```
-
-### 4. Apply Database Migrations
-
-```sh
-dotnet ef database update
-```
-
-### 5. Run the Application
+### 3. Run the Application
 
 ```sh
 dotnet watch run
