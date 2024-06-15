@@ -24,7 +24,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Tên danh mục</label>
                                 <div class="col-sm-10">
-                                    <input asp-for="MenuName" class="form-control" />
+                                    <input asp-for="MenuName" class="form-control" required />
                                     <span asp-validation-for="MenuName" class="text-danger mb-4"></span>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Cấp</label>
                                 <div class="col-sm-10">
-                                    <select asp-for="MenuId" class="form-select">
+                                    <select asp-for="MenuId" class="form-select" required >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                     </select>
@@ -42,7 +42,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Liên kết</label>
                                 <div class="col-sm-10">
-                                    <input asp-for="Link" class="form-control" />
+                                    <input asp-for="Link" class="form-control" required />
                                     <span asp-validation-for="Link" class="text-danger mb-4"></span>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                 <label class="col-sm-2 col-form-label">Danh mục cha</label>
                                 <div class="col-sm-10">
                                     <select asp-for="ParentId" class="form-select"
-                                        asp-items="@(new SelectList(ViewBag.menuList, "Value", "Text"))" id="ParentId">
+                                        asp-items="@(new SelectList(ViewBag.menuList, "Value", "Text"))" id="ParentId" required >
                                     </select>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Thứ tự</label>
                                 <div class="col-sm-10">
-                                    <input asp-for="MenuOrder" class="form-control" />
+                                    <input asp-for="MenuOrder" class="form-control" required />
                                     <span asp-validation-for="MenuOrder" class="text-danger mb-4"></span>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                 <label class="col-sm-2 col-form-label pt-0">Hiển thị</label>
                                 <div class="col-sm-10">
                                     <div class="form-check form-switch">
-                                        <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                                        <input asp-for="IsActive" class="form-check-input" type="checkbox" required />
                                         <label class="form-check-label">Ẩn | Hiện</label>
                                         <span asp-validation-for="IsActive" class="text-danger mb-4"></span>
                                     </div>

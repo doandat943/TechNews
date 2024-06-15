@@ -41,6 +41,31 @@ namespace TechNews.Ultilities
             return type + "/" + SlugGenerator.SlugGenerator.GenerateSlug(title) + "-" + id.ToString();
         }
 
+        public static string HighLight(string input, int option)
+        {
+            if (option == 1)
+            {
+                for (int i = 0; i < input.Length; i++)
+                {
+                    if (char.IsUpper(input[i]))
+                    {
+                        return input.Substring(0, i + 1);
+                    }
+                }
+            }
+            else if (option == 2)
+            {
+                for (int i = 0; i < input.Length; i++)
+                {
+                    if (char.IsUpper(input[i]))
+                    {
+                        return input.Substring(i);
+                    }
+                }
+            }
+            return "Error";
+        }
+
         public static string GetDiffTime(DateTime inputDate, int typeShow = 0)
         {
             var timeDifference = DateTime.Now - inputDate;
@@ -95,7 +120,8 @@ namespace TechNews.Ultilities
             return truncated + "...";
         }
 
-        public static bool IsLogin() {
+        public static bool IsLogin()
+        {
             if (Functions._AccountId == String.Empty)
             {
                 return false;
