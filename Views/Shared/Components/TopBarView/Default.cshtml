@@ -1,6 +1,10 @@
 @model IEnumerable<dynamic>
 @using TechNews.Ultilities
 
+@{
+    var aboutUs = ViewBag.AboutUs;
+}
+
 <!-- Topbar Start -->
 <div class="container-fluid d-none d-lg-block">
     <div class="row align-items-center bg-dark px-lg-5">
@@ -8,19 +12,19 @@
             <nav class="navbar navbar-expand-sm bg-dark p-0">
                 <ul class="navbar-nav nav ml-auto mr-n2">
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="@ViewBag.Twitter"><small class="fab fa-twitter"></small></a>
+                        <a class="nav-link text-body" href="@aboutUs.Twitter"><small class="fab fa-twitter"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="@ViewBag.Facebook"><small class="fab fa-facebook-f"></small></a>
+                        <a class="nav-link text-body" href="@aboutUs.Facebook"><small class="fab fa-facebook-f"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="@ViewBag.Linkedin"><small class="fab fa-linkedin-in"></small></a>
+                        <a class="nav-link text-body" href="@aboutUs.Linkedin"><small class="fab fa-linkedin-in"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="@ViewBag.Instagram"><small class="fab fa-instagram"></small></a>
+                        <a class="nav-link text-body" href="@aboutUs.Instagram"><small class="fab fa-instagram"></small></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-body" href="@ViewBag.Youtube"><small class="fab fa-youtube"></small></a>
+                        <a class="nav-link text-body" href="@aboutUs.Youtube"><small class="fab fa-youtube"></small></a>
                     </li>
                 </ul>
             </nav>
@@ -29,8 +33,8 @@
     <div class="row align-items-center bg-white py-3 px-lg-5">
         <div class="col-lg-4">
             <a href="/" class="navbar-brand p-0 d-none d-lg-block">
-                <h1 class="m-0 display-4 text-uppercase text-primary">@Functions.HighLight(ViewBag.WebName, 1)<span
-                        class="text-secondary font-weight-normal">@Functions.HighLight(ViewBag.WebName, 2)</span></h1>
+                <h1 class="m-0 display-4 text-uppercase text-primary">@Functions.HighLight(aboutUs.WebName, 1)<span
+                        class="text-secondary font-weight-normal">@Functions.HighLight(aboutUs.WebName, 2)</span></h1>
             </a>
         </div>
     </div>
