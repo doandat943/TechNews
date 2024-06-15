@@ -34,12 +34,12 @@
                             <table class="table table-borderless datatable">
                                 <thead>
                                     <tr>
-                                        <th scope="col">AccountId</th>
-                                        <th scope="col">Name</th>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Tên</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Gender</th>
-                                        <th scope="col">Role</th>
-                                        <th scope="col">Functions</th>
+                                        <th scope="col">Giới tính</th>
+                                        <th scope="col">Chức vụ</th>
+                                        <th scope="col">Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,8 +49,42 @@
                                             <th>@item.AccountId</th>
                                             <td>@item.Name</td>
                                             <td>@item.Email</td>
-                                            <td>@item.GenderId</td>
-                                            <td>@item.RoleId</td>
+                                            <td>
+                                                @{
+                                                    string gender = "";
+                                                    if (item.GenderId == 1) 
+                                                    {
+                                                        gender = "Nam";
+                                                    }
+                                                    else if (item.GenderId == 2) 
+                                                    {
+                                                        gender = "Nữ";
+                                                    }
+                                                    else if (item.GenderId == 3) 
+                                                    {
+                                                        gender = "Khác";
+                                                    }
+                                                }
+                                                @gender
+                                            </td>
+                                            <td>
+                                                @{
+                                                    string role = "";
+                                                    if (item.RoleId == 1) 
+                                                    {
+                                                        role = "Người dùng";
+                                                    }
+                                                    else if (item.RoleId == 2) 
+                                                    {
+                                                        role = "Tác giả";
+                                                    }
+                                                    else if (item.RoleId == 3) 
+                                                    {
+                                                        role = "Quản trị viên";
+                                                    }
+                                                }
+                                                @role
+                                            </td>
                                             <td class="text-center" scope="row">
                                                 <a asp-area="Admin" asp-controller="Account" asp-action="Edit"
                                                     asp-route-id="@item.AccountId" class="btn btn-primary btn-sm"

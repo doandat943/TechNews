@@ -35,23 +35,19 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">MenuName</th>
-                                        <th scope="col">Levels</th>
-                                        <th scope="col">ParentID</th>
-                                        <th scope="col">Order</th>
-                                        <th scope="col">Visible</th>
-                                        <th scope="col">Functions</th>
+                                        <th scope="col">Danh mục</th>
+                                        <th scope="col">Thứ tự</th>
+                                        <th scope="col">Trạng thái</th>
+                                        <th scope="col">Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @foreach (var item in Model.Where(p => p.Level == 1))
                                     {
                                         <tr>
                                             <th>@item.MenuId</th>
                                             <td><a href="/category/@item.MenuId"
                                                     class="text-primary">@item.MenuName</a></td>
-                                            <td>@item.Level</td>
-                                            <td>@item.ParentId</td>
                                             <td>@item.MenuOrder</td>
                                             <td>
                                                 <span class="badge @(item.IsActive == false ? "bg-warning" : "bg-success")">
@@ -67,6 +63,28 @@
                                                     title="Xóa danh mục"><i class="bi bi-trash"></i></a>
                                             </td>
                                         </tr>
+                                        @foreach (var item2 in Model.Where(p => p.Level == 2 && p.ParentId == item.MenuId))
+                                        {
+                                            <tr>
+                                            <th>@item.MenuId</th>
+                                            <td><a href="/category/@item2.MenuId"
+                                                    class="text-primary">--- @item2.MenuName</a></td>
+                                            <td>@item.MenuOrder</td>
+                                            <td>
+                                                <span class="badge @(item.IsActive == false ? "bg-warning" : "bg-success")">
+                                                    @(item.IsActive == false ? "Ẩn" : "Hiện")
+                                                </span>
+                                            </td>
+                                            <td class="text-center" scope="row">
+                                                <a asp-area="Admin" asp-controller="Menu" asp-action="Edit"
+                                                    asp-route-id="@item.MenuId" class="btn btn-primary btn-sm"
+                                                    title="Chỉnh sửa danh mục"><i class="bi bi-pencil"></i></a>
+                                                <a asp-area="Admin" asp-controller="Menu" asp-action="Delete"
+                                                    asp-route-id="@item.MenuId" class="btn btn-danger btn-sm"
+                                                    title="Xóa danh mục"><i class="bi bi-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        }
                                     }
                                 </tbody>
                             </table>
