@@ -1,4 +1,3 @@
-@using TechNews.Models
 @using TechNews.Ultilities
 
 <!-- Breaking News Start -->
@@ -27,15 +26,15 @@
                 <!-- News Detail Start -->
                 <div class="position-relative mb-3">
 
-                    <img class="img-fluid w-100" src="@Model.Image" style="object-fit: cover;">
+                    <img class="img-fluid w-100" src="@ViewBag.AboutUs.Image" style="object-fit: cover;">
                     <div class="bg-white border border-top-0 p-4">
-                        <p>@Html.Raw(Model.Content)</p>
+                        <p>@Html.Raw(ViewBag.AboutUs.Content)</p>
                     </div>
 
                     <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
                         <div class="d-flex align-items-center">
-                            <img class="rounded-circle mr-2" src="@Model.AdminAvatar" width="25" height="25" alt="">
-                            <span>@Model.AdminName</span>
+                            <img class="rounded-circle mr-2" src="@ViewBag.AboutUs.AdminAvatar" width="25" height="25" alt="">
+                            <span>@ViewBag.AboutUs.AdminName</span>
                         </div>
                     </div>
 

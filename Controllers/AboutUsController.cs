@@ -29,7 +29,9 @@ namespace TechNews.Controllers
                 return NotFound();
             }
 
-            return View(aboutUs);
+            ViewBag.AboutUs = aboutUs;
+
+            return View();
         }
     }
 }
