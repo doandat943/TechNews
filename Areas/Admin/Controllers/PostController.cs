@@ -42,18 +42,19 @@ namespace TechNews.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Login");
             }
             var menuList = (from m in _context.Menu
-                            where m.Level == 2
-                            select new SelectListItem()
+                            where m.Level == 2 &&
+                                  m.MenuId == _context.Account
+                                               .Where(p => p.AccountId == Functions._AccountId)
+                                               .Select(p => p.MenuId)
+                                               .FirstOrDefault()
+                            select new SelectListItem
                             {
                                 Text = m.MenuName,
                                 Value = m.MenuId.ToString()
                             }).ToList();
-            menuList.Insert(0, new SelectListItem()
-            {
-                Text = "--- Chọn ---",
-                Value = string.Empty
-            });
+
             ViewBag.menuList = menuList;
+
             return View();
         }
 
@@ -63,6 +64,10 @@ namespace TechNews.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 post.CreatedDate = DateTime.Now;
+                post.MenuId = (int)_context.Account
+                    .Where(p => p.AccountId == Functions._AccountId)
+                    .Select(p => p.MenuId)
+                    .FirstOrDefault();
                 _context.Post.Add(post);
                 _context.SaveChanges();
                 return RedirectToAction("Index");

@@ -19,6 +19,8 @@ namespace TechNews.Models
 
         public required int RoleId { get; set; }
 
+        public int? MenuId { get; set; }
+
         public string? Avatar { get; set; }
 
         [ForeignKey("GenderId")]
@@ -26,5 +28,8 @@ namespace TechNews.Models
 
         [ForeignKey("RoleId")]
         public virtual Role? Role { get; set; }
+
+        [ForeignKey("MenuId")]
+        public virtual Menu? Menu { get; set; }
     }
 }

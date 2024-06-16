@@ -110,6 +110,13 @@
                       </select>
                     </div>
 
+                    <div class="form-group">
+                      <label for="GenderId" class="form-label">Chuyên mục</label>
+                      <select asp-for="MenuId" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.menuList, "Value", "Text"))" id="MenuId">
+                      </select>
+                    </div>
+
                     <div class="form-group d-none">
                       <input asp-for="RoleId" class="form-control" value="1" />
                     </div>

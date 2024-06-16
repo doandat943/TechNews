@@ -43,28 +43,34 @@ namespace TechNews.Ultilities
 
         public static string HighLight(string input, int option)
         {
-            if (option == 1)
+            bool foundUpper = false;
+            for (int i = 0; i < input.Length; i++)
             {
-                for (int i = 0; i < input.Length; i++)
+                if (char.IsUpper(input[i]))
                 {
-                    if (char.IsUpper(input[i]))
+                    foundUpper = true;
+                    if (option == 1)
                     {
-                        return input.Substring(0, i + 1);
+                        return input.Substring(0, i);
                     }
-                }
-            }
-            else if (option == 2)
-            {
-                for (int i = 0; i < input.Length; i++)
-                {
-                    if (char.IsUpper(input[i]))
+                    else if (option == 2)
                     {
                         return input.Substring(i);
                     }
                 }
             }
-            return "Error";
+
+            // If no uppercase letter is found
+            if (!foundUpper)
+            {
+                return "Error";
+            }
+
+            // If option == 1 and no uppercase letter is found, return empty string
+            return "";
         }
+
+
 
         public static string GetDiffTime(DateTime inputDate, int typeShow = 0)
         {

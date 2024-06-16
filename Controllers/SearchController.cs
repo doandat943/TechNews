@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using TechNews.Models;
 
@@ -22,12 +23,13 @@ namespace TechNews.Controllers
                          join comment in _context.Comment on post.PostId equals comment.PostId into postComments
                          join menu in _context.Menu on post.MenuId equals menu.MenuId
                          join account in _context.Account on post.AuthorId equals account.AccountId
-                         where post.IsActive && (post.Title.Contains(keyword) || post.Summary.Contains(keyword) || post.Content.Contains(keyword))
+                         where post.IsActive && (post.Title.Contains(keyword) || post.Summary.Contains(keyword))
                          select new
                          {
                              post.PostId,
                              post.Title,
                              post.Summary,
+                             post.Content,
                              post.Image,
                              post.CreatedDate,
                              post.AuthorId,
@@ -38,11 +40,29 @@ namespace TechNews.Controllers
                              AuthorName = account.Name,
                              AuthorAvatar = account.Avatar
                          }).OrderByDescending(p => p.View).ToList();
+
+            var sortedPosts = posts.AsEnumerable()
+                      .OrderByDescending(p => CountKeywordOccurrences(p.Title, keyword)*3 +
+                                              CountKeywordOccurrences(p.Summary, keyword)*2 +
+                                              CountKeywordOccurrences(p.Content, keyword)*1)
+                      .ToList();
+
             ViewBag.PostCount = posts.Count();
 
-            ViewBag.Post = posts;
+            ViewBag.Post = sortedPosts;
 
             return View();
         }
+        
+
+        private int CountKeywordOccurrences(string input, string keyword)
+        {
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(keyword))
+                return 0;
+
+            MatchCollection matches = Regex.Matches(input, keyword, RegexOptions.IgnoreCase);
+            return matches.Count;
+        }
+
     }
 }

@@ -35,6 +35,19 @@ namespace TechNews.Areas.Admin.Controllers
                 Text = "--- Select ---",
                 Value = string.Empty
             });
+            var menuList = (from m in _context.Menu
+                            where m.Level == 2
+                            select new SelectListItem()
+                            {
+                                Text = m.MenuName,
+                                Value = m.MenuId.ToString()
+                            }).ToList();
+            menuList.Insert(0, new SelectListItem()
+            {
+                Text = "--- Chọn ---",
+                Value = string.Empty
+            });
+            ViewBag.menuList = menuList;
             ViewBag.genderList = genderList;
             return View();
         }

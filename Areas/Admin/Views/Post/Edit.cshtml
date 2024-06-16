@@ -1,3 +1,4 @@
+@using TechNews.Ultilities
 @model TechNews.Models.Post;
 @{
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
@@ -65,16 +66,25 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            @{
+                                if (Functions._AccountRole != 3) 
+                                {
+                                    <input asp-for="IsActive" type="hidden" />
+                                }
+                                else
+                                {
+                                    <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label pt-0">Hiển thị</label>
                                 <div class="col-sm-10">
                                     <div class="form-check form-switch">
-                                        <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                                        <input asp-for="IsActive" class="form-check-input" type="checkbox" required />
                                         <label class="form-check-label">Ẩn | Hiện</label>
                                         <span asp-validation-for="IsActive" class="text-danger mb-4"></span>
                                     </div>
                                 </div>
                             </div>
+                                }
+                            }
 
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Lượt xem</label>
